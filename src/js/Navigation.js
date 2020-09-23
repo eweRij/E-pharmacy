@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
-const Navigation = () => {
-  const [trigger, setTrigger] = useState(false);
-
-  const handleTrigger = () => {
-    setTrigger((prev) => !prev);
+const Navigation = ({ onClick, trigger, showList }) => {
+  // działa przenoszenie
+  const [drugs, setDrugs] = useState([]);
+  const [searchItem, setSearchItem] = useState("");
+  // const [filteredDrugs, setFilteredDrugs] = useState("");
+  const handleSearchItem = (e) => {
+    e.preventDefault();
+    setSearchItem(e.target.value);
   };
+  const API = "http://localhost:3001/drugs";
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetch(`${API}`)
+      .then((response) => response.json())
+      .then((data) => setDrugs(data))
+      .catch((err) => console.log(err));
+  };
+  console.log(drugs);
+  console.log(searchItem);
+  useEffect(() => {
+    showList(drugs, searchItem);
+  }, [drugs]);
+  // console.log(filteredDrugs);
   return (
     <>
       <header className="container">
@@ -15,8 +32,16 @@ const Navigation = () => {
             <div className="header__logoAndSearch__logo">
               <span className="logo__title">Logo Apteki</span>
             </div>
-            <form className="header__logoAndSearch__form">
-              <input type="text"></input>
+            <form
+              onSubmit={handleSearch}
+              className="header__logoAndSearch__form"
+            >
+              <input
+                onChange={handleSearchItem}
+                type="text"
+                value={searchItem}
+                name="search drug"
+              ></input>
               <input type="submit" value="Szukaj"></input>
             </form>
             <Link className="basket" to="./basket">
@@ -27,8 +52,9 @@ const Navigation = () => {
             </Link>
           </div>
           <nav className={trigger ? "mobile-section opened" : "mobile-section"}>
-            <button onClick={handleTrigger} id="menu-trigger">
+            <button onClick={onClick} id="menu-trigger">
               <i className="fa fa-hamburger"></i>
+              <Link to="/" />
             </button>
             <ul className="menu">
               <li>
@@ -53,5 +79,4 @@ const Navigation = () => {
     </>
   );
 };
-
 export default Navigation;
