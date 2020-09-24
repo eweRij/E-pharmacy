@@ -22,7 +22,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
   console.log(searchItem);
   useEffect(() => {
     showList(drugs, searchItem);
-  }, [drugs]);
+  }, []);
   // console.log(filteredDrugs);
   return (
     <>
@@ -42,7 +42,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
                 value={searchItem}
                 name="search drug"
               ></input>
-              <input type="submit" value="Szukaj"></input>
+              <button type="submit">
+                <Link to="/searchedItems">Szukaj</Link>
+              </button>
             </form>
             <Link className="basket" to="./basket">
               <i
@@ -54,7 +56,6 @@ const Navigation = ({ onClick, trigger, showList }) => {
           <nav className={trigger ? "mobile-section opened" : "mobile-section"}>
             <button onClick={onClick} id="menu-trigger">
               <i className="fa fa-hamburger"></i>
-              <Link to="/" />
             </button>
             <ul className="menu">
               <li>

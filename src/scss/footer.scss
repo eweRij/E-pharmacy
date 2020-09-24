@@ -1,0 +1,29 @@
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+  section {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    div {
+      width: 50%;
+    }
+  }
+}
+@media screen and (min-width: 350px) and (max-width: 690px) {
+  footer {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    section {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .footerVisibility {
+    display: none;
+  }
+}
