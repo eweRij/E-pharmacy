@@ -73,9 +73,19 @@ const Layout = () => {
             )}
           /> */}
           <Route path="/basket" component={Basket} />
-          <Route path="/otc" component={Otc} />
+          {/* <Route path="/otc" component={Otc} /> */}
+          <Route
+            exact
+            path="/otc"
+            render={(props) => <Otc {...props} itemsToShow={filteredDrugs} />}
+          />
           <Route path="/prescriptions" component={Prescriptions} />
-          <Route path="/drugs" component={Drugs} />
+          {/* <Route path="/drugs" component={Drugs} /> */}
+          <Route
+            exact
+            path="/drugs"
+            render={(props) => <Drugs {...props} itemsToShow={filteredDrugs} />}
+          />
           <Route component={NotFound} />
         </Switch>
         <Footer />
