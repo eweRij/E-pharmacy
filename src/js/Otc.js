@@ -13,7 +13,7 @@ const Otc = ({ itemsToShow }) => {
         (data) =>
           setOtcDrugs(
             data.filter((item) => {
-              return item.katDostOpak === "Rpw"; //fejk, to by było dopiero ;P
+              return item.katDostOpak === "OTC"; //fejk, to by było dopiero ;P
             })
           ) //jak w RPZ
       )
