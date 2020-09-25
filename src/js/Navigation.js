@@ -22,7 +22,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
   console.log(searchItem);
   useEffect(() => {
     showList(drugs, searchItem);
-  }, []);
+  }, [drugs]);
   // console.log(filteredDrugs);
   return (
     <>
