@@ -10,7 +10,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
     e.preventDefault();
     setSearchItem(e.target.value);
   };
-  const API = "http://localhost:3001/drugs";
+  const API = `http://localhost:8080/api/drugs`;
   const handleSearch = (e) => {
     e.preventDefault();
     fetch(`${API}`)
@@ -18,10 +18,10 @@ const Navigation = ({ onClick, trigger, showList }) => {
       .then((data) => setDrugs(data))
       .catch((err) => console.log(err));
   };
+  console.log(drugs);
   const handleClearHistory = () => {
     setDrugs([]);
   }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
-  console.log(drugs);
   console.log(searchItem);
   useEffect(() => {
     showList(drugs, searchItem);
