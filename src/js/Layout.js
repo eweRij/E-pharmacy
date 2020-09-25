@@ -11,10 +11,10 @@ import SearchedItems from "./SearchedItems";
 import "../scss/layout.scss";
 
 const Layout = () => {
-  const [visibility, setVisibility] = useState(false);
-  const [menu, setMenu] = useState(false);
-  const [filteredDrugs, setFilteredDrugs] = useState("");
-  // let handleVisibility;
+  const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
+  const [menu, setMenu] = useState(false); // widocznoscr rozwijanego menu na mobilkach
+  const [filteredDrugs, setFilteredDrugs] = useState([]); // wyszukiwarka leków dopracowac w innych oknach!
+  // let handleVisibility;// doczytac co z mediaqueries!!
   // const mql = window.matchMedia("screen and (max-width:650px)");
   // mql.addListener(function (mql) {
   //   if (mql.matches) {
@@ -30,22 +30,27 @@ const Layout = () => {
   //   }
   // });
   const handleVisibility = () => {
+    //klikanie zmienia widocznosc przekazujemy jako props do nava
     setVisibility((prev) => !prev);
     setMenu((prev) => !prev);
-    console.log("test hamburgera");
   };
   const handleFilteredDrugs = (drugs, searchItem) => {
-    const newDrugs = drugs.filter((drug) => {
-      return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
-    }); //działa wyszukuje po nazwie
-    setFilteredDrugs(newDrugs);
+    // przekazujemy jako props do podstron //jak zrobic zeby tablica sie czyscila w nowym oknie??
+    // const newDrugs = drugs.filter((drug) => {
+    //   return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
+    // }); //działa wyszukuje po nazwie
+    setFilteredDrugs(
+      drugs.filter((drug) => {
+        return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
+      })
+    );
   };
 
   console.log(filteredDrugs);
 
   const NotFound = () => {
     return <h1>Coś poszło nie tak, nie odnazleżliśmy strony:(</h1>;
-  };
+  }; //wiadomo
 
   return (
     <div className={visibility ? "body moved" : "body"}>
@@ -62,7 +67,6 @@ const Layout = () => {
             render={(props) => <Main {...props} itemsToShow={filteredDrugs} />}
           />
           {/* <Route
-            exact
             path="/searchedItems"
             render={(props) => (
               <SearchedItems {...props} itemsToShow={filteredDrugs} />

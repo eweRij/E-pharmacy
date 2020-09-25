@@ -11,7 +11,12 @@ const SearchedItems = ({ onList }) => {
         <h2>Znaleziono:</h2>
         <ul>
           {onList.map((item, index) => {
-            return <li key={index}>{item.nazwa}</li>;
+            return (
+              <li key={index}>
+                {item.nazwa} ({item.nazPowStos}), {item.dawka}, {item.postac},{" "}
+                {item.podmOdpow}
+              </li>
+            );
           })}
         </ul>
       </>

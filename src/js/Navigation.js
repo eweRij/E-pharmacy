@@ -59,7 +59,6 @@ const Navigation = ({ onClick, trigger, showList }) => {
           <nav className={trigger ? "mobile-section opened" : "mobile-section"}>
             <button onClick={onClick} id="menu-trigger">
               <i className="fa fa-hamburger"></i>
-              <Link to="/" />
             </button>
             <ul className="menu">
               <li>
