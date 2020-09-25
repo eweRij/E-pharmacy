@@ -2,14 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
-const SearchedItems = ({ itemsToShow }) => {
-  if (itemsToShow) {
-    console.log("test sercza");
-    console.log(itemsToShow);
+const SearchedItems = ({ onList }) => {
+  console.log(onList);
+
+  if (onList) {
     return (
       <>
+        <h2>Znaleziono:</h2>
         <ul>
-          {itemsToShow.map((item, index) => {
+          {onList.map((item, index) => {
             return (
               <li key={index}>
                 {item.nazwa} ({item.nazPowStos}), {item.dawka}, {item.postac},{" "}
@@ -21,8 +22,7 @@ const SearchedItems = ({ itemsToShow }) => {
       </>
     );
   } else {
-    console.log("test sercza 2");
-    return <h1>Test searcha</h1>;
+    return <h2></h2>;
   }
 };
 

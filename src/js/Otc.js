@@ -4,7 +4,7 @@ import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
 const Otc = () => {
   const [otcDrugs, setOtcDrugs] = useState(false); //stan leków na receptę
-  const API = "http://localhost:3001/drugs";
+  const API = "http://localhost:8080/api/drugs";
   useEffect(() => {
     fetch(`${API}`)
       .then((response) => response.json())
@@ -12,7 +12,7 @@ const Otc = () => {
         (data) =>
           setOtcDrugs(
             data.filter((item) => {
-              return item.katDostOpak === "OTC";
+              return item.katDostOpak === "Rpw";
             })
           ) //jak w RPZ
       )

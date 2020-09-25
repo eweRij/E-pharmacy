@@ -10,7 +10,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
     e.preventDefault();
     setSearchItem(e.target.value);
   };
-  const API = "http://localhost:3001/drugs";
+  const API = `http://localhost:8080/api/drugs`;
   const handleSearch = (e) => {
     e.preventDefault();
     fetch(`${API}`)
@@ -19,6 +19,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
       .catch((err) => console.log(err));
   };
   console.log(drugs);
+  const handleClearHistory = () => {
+    setDrugs([]);
+  }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
   console.log(searchItem);
   useEffect(() => {
     showList(drugs, searchItem);
@@ -42,9 +45,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
                 value={searchItem}
                 name="search drug"
               ></input>
-              <button type="submit">
-                <Link to="/searchedItems">Szukaj</Link>
-              </button>
+              <input type="submit" value="Szukaj">
+                {/* <Link to="/searchedItems">Szukaj</Link> */}
+              </input>
             </form>
             <Link className="basket" to="./basket">
               <i
@@ -58,6 +61,11 @@ const Navigation = ({ onClick, trigger, showList }) => {
               <i className="fa fa-hamburger"></i>
             </button>
             <ul className="menu">
+              <li>
+                <Link onClick={handleClearHistory} className="links" to="/">
+                  Strona główna
+                </Link>
+              </li>
               <li>
                 <Link className="links" to="/otc">
                   Bez recepty

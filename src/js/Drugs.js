@@ -4,7 +4,7 @@ import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
 const Drugs = () => {
   const [rxDrugs, setRxDrugs] = useState(false); //stan leków na receptę
-  const API = "http://localhost:3001/drugs";
+  const API = "http://localhost:8080/api/drugs";
   useEffect(() => {
     fetch(`${API}`)
       .then((response) => response.json())
@@ -12,7 +12,7 @@ const Drugs = () => {
         (data) =>
           setRxDrugs(
             data.filter((item) => {
-              return item.katDostOpak === "Rpz";
+              return item.katDostOpak === "Rpz" || "Rp";
             })
           ) //filtruje po API za Rpz--> analogicznie bedzie w OTC
       )

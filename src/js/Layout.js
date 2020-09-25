@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import Navigation from "./Navigation";
 import Main from "./Main";
@@ -45,6 +45,7 @@ const Layout = () => {
       })
     );
   };
+
   console.log(filteredDrugs);
 
   const NotFound = () => {
@@ -60,13 +61,17 @@ const Layout = () => {
           showList={handleFilteredDrugs}
         />
         <Switch>
-          <Route exact path="/" component={Main} />
           <Route
+            exact
+            path="/"
+            render={(props) => <Main {...props} itemsToShow={filteredDrugs} />}
+          />
+          {/* <Route
             path="/searchedItems"
             render={(props) => (
               <SearchedItems {...props} itemsToShow={filteredDrugs} />
             )}
-          />
+          /> */}
           <Route path="/basket" component={Basket} />
           <Route path="/otc" component={Otc} />
           <Route path="/prescriptions" component={Prescriptions} />
