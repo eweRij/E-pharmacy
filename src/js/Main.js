@@ -1,34 +1,19 @@
 import { prettyDOM } from "@testing-library/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import Slider from "./Slider";
+import SearchedItems from "./SearchedItems";
 
-const Main = ({ searchedDrugs }) => {
-  console.log(searchedDrugs);
-  if (searchedDrugs) {
-    return (
-      <>
-        <h1>Main + slider</h1>
-        <ul>
-          {searchedDrugs.map((drug, index) => {
-            return (
-              <li key={index}>
-                {drug.nazwa} ({drug.nazPowStos}), {drug.dawka}, {drug.postac},{" "}
-                {drug.podmOdpow}
-              </li>
-            );
-          })}
-        </ul>
-        <Slider />
-      </>
-    );
+const Main = ({ itemsToShow }) => {
+  if (itemsToShow.length > 0) {
+    //jak wyczyscic ustawienia po ponownym wyrenderowaniu?
+
+    return <SearchedItems onList={itemsToShow}></SearchedItems>;
   } else {
     return (
       <>
-        <h1>
-          Niestety nie odnaleźliśmy poszukiwanego produktu, spróbuj jeszcze raz!
-        </h1>
         <Slider />
       </>
     );

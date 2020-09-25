@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import Navigation from "./Navigation";
 import Main from "./Main";
@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
+import SearchedItems from "./SearchedItems";
 import "../scss/layout.scss";
 
 const Layout = () => {
@@ -39,6 +40,7 @@ const Layout = () => {
     }); //działa wyszukuje po nazwie
     setFilteredDrugs(newDrugs);
   };
+
   console.log(filteredDrugs);
 
   const NotFound = () => {
@@ -57,10 +59,15 @@ const Layout = () => {
           <Route
             exact
             path="/"
-            render={(props) => (
-              <Main {...props} searchedDrugs={filteredDrugs} />
-            )}
+            render={(props) => <Main {...props} itemsToShow={filteredDrugs} />}
           />
+          {/* <Route
+            exact
+            path="/searchedItems"
+            render={(props) => (
+              <SearchedItems {...props} itemsToShow={filteredDrugs} />
+            )}
+          /> */}
           <Route path="/basket" component={Basket} />
           <Route path="/otc" component={Otc} />
           <Route path="/prescriptions" component={Prescriptions} />

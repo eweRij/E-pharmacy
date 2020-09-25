@@ -18,6 +18,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
       .then((data) => setDrugs(data))
       .catch((err) => console.log(err));
   };
+  const handleClearHistory = () => {
+    setDrugs([]);
+  }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
   console.log(drugs);
   console.log(searchItem);
   useEffect(() => {
@@ -42,7 +45,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
                 value={searchItem}
                 name="search drug"
               ></input>
-              <input type="submit" value="Szukaj"></input>
+              <input type="submit" value="Szukaj">
+                {/* <Link to="/searchedItems">Szukaj</Link> */}
+              </input>
             </form>
             <Link className="basket" to="./basket">
               <i
@@ -57,6 +62,11 @@ const Navigation = ({ onClick, trigger, showList }) => {
               <Link to="/" />
             </button>
             <ul className="menu">
+              <li>
+                <Link onClick={handleClearHistory} className="links" to="/">
+                  Strona główna
+                </Link>
+              </li>
               <li>
                 <Link className="links" to="/otc">
                   Bez recepty
