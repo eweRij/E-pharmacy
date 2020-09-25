@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import SearchedItems from "./SearchedItems";
 
-const Drugs = () => {
+const Drugs = ({ itemsToShow }) => {
   const [rxDrugs, setRxDrugs] = useState(false); //stan leków na receptę
   const API = "http://localhost:8080/api/drugs";
   useEffect(() => {
@@ -20,7 +21,11 @@ const Drugs = () => {
   }, []);
   console.log(rxDrugs);
 
-  if (rxDrugs) {
+  if (itemsToShow.length > 0) {
+    //jak wyczyscic ustawienia po ponownym wyrenderowaniu?
+
+    return <SearchedItems onList={itemsToShow}></SearchedItems>;
+  } else if (rxDrugs) {
     return (
       <>
         <h1>Leki na receptę dostępne w naszaj Aptece:</h1>
@@ -39,5 +44,25 @@ const Drugs = () => {
   } else {
     return <h1>Trwa ładowanie strony...</h1>;
   }
+  //działa!
+  // if (rxDrugs) {
+  //   return (
+  //     <>
+  //       <h1>Leki na receptę dostępne w naszaj Aptece:</h1>
+  //       <ul>
+  //         {rxDrugs.map((item, index) => {
+  //           return (
+  //             <li key={index}>
+  //               {item.nazwa} ({item.nazPowStos}), {item.dawka}, {item.postac},{" "}
+  //               {item.podmOdpow}
+  //             </li>
+  //           );
+  //         })}
+  //       </ul>
+  //     </>
+  //   );
+  // } else {
+  //   return <h1>Trwa ładowanie strony...</h1>;
+  // }
 };
 export default Drugs;
