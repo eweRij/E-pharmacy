@@ -40,14 +40,13 @@ const Navigation = ({ onClick, trigger, showList }) => {
               className="header__logoAndSearch__form"
             >
               <input
+                id="input-search"
                 onChange={handleSearchItem}
                 type="text"
                 value={searchItem}
                 name="search drug"
               ></input>
-              <input type="submit" value="Szukaj">
-                {/* <Link to="/searchedItems">Szukaj</Link> */}
-              </input>
+              <input id="btn-search" type="submit" value="Szukaj"></input>
             </form>
             <Link className="basket" to="./basket">
               <i
