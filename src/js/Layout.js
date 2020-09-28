@@ -7,13 +7,13 @@ import Footer from "./Footer";
 import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
-import SearchedItems from "./SearchedItems";
 import "../scss/layout.scss";
 
 const Layout = () => {
   const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
   const [menu, setMenu] = useState(false); // widocznoscr rozwijanego menu na mobilkach
   const [filteredDrugs, setFilteredDrugs] = useState([]); // wyszukiwarka leków dopracowac w innych oknach!
+  const [searchedItem, setSearchedItem] = useState("");
   // let handleVisibility;// doczytac co z mediaqueries!!
   // const mql = window.matchMedia("screen and (max-width:650px)");
   // mql.addListener(function (mql) {
@@ -44,6 +44,7 @@ const Layout = () => {
         return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
       })
     );
+    setSearchedItem(searchItem);
   };
 
   console.log(filteredDrugs);
@@ -64,7 +65,13 @@ const Layout = () => {
           <Route
             exact
             path="/"
-            render={(props) => <Main {...props} itemsToShow={filteredDrugs} />}
+            render={(props) => (
+              <Main
+                {...props}
+                itemsToShow={filteredDrugs}
+                imageToShow={searchedItem}
+              />
+            )}
           />
           {/* <Route
             path="/searchedItems"
@@ -77,14 +84,26 @@ const Layout = () => {
           <Route
             exact
             path="/otc"
-            render={(props) => <Otc {...props} itemsToShow={filteredDrugs} />}
+            render={(props) => (
+              <Otc
+                {...props}
+                itemsToShow={filteredDrugs}
+                imageToShow={searchedItem}
+              />
+            )}
           />
           <Route path="/prescriptions" component={Prescriptions} />
           {/* <Route path="/drugs" component={Drugs} /> */}
           <Route
             exact
             path="/drugs"
-            render={(props) => <Drugs {...props} itemsToShow={filteredDrugs} />}
+            render={(props) => (
+              <Drugs
+                {...props}
+                itemsToShow={filteredDrugs}
+                imageToShow={searchedItem}
+              />
+            )}
           />
           <Route component={NotFound} />
         </Switch>
