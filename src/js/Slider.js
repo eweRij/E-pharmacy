@@ -11,7 +11,7 @@ const Slider = () => {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              style={{ width: "700px", height: "350px" }}
+              style={{ maxWidth: "700px", maxHeight: "350px" }}
               src="https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
               alt="natural cosmetics"
             />
@@ -23,7 +23,7 @@ const Slider = () => {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              style={{ width: "700px", height: "350px" }}
+              style={{ maxWidth: "700px", maxHeight: "350px" }}
               src="https://images.pexels.com/photos/51929/medications-cure-tablets-pharmacy-51929.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
               alt="pink tablets"
             />
@@ -35,7 +35,7 @@ const Slider = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              style={{ width: "700px", height: "350px" }}
+              style={{ maxWidth: "700px", maxHeight: "350px" }}
               className="d-block w-100"
               src="https://images.pexels.com/photos/2383010/pexels-photo-2383010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=650&w=940"
               alt="green leaf with healthcare sign"
@@ -48,13 +48,13 @@ const Slider = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              style={{ width: "650px", height: "350px" }}
+              style={{ maxWidth: "650px", maxHeight: "350px" }}
               className="d-block w-100"
               src="https://images.pexels.com/photos/593451/pexels-photo-593451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
               alt="bottle with tablets"
             />
 
-            <Carousel.Caption style={{ color: "#034c8c" }}>
+            <Carousel.Caption style={{ color: " #d9042b" }}>
               <h2>Zrealizuj u nas swoją e-receptę!</h2>
               <h2>Łatwy i szybki sposób, bez czekania na zamówienie.</h2>
             </Carousel.Caption>

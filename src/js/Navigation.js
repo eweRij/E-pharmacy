@@ -31,7 +31,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
     <>
       <header className="container">
         <div className="header">
-          <div className="header__logoAndsearch">
+          <div className="header__logoAndSearch">
             <div className="header__logoAndSearch__logo">
               <span className="logo__title">Logo Apteki</span>
             </div>
@@ -40,14 +40,13 @@ const Navigation = ({ onClick, trigger, showList }) => {
               className="header__logoAndSearch__form"
             >
               <input
+                id="input-search"
                 onChange={handleSearchItem}
                 type="text"
                 value={searchItem}
                 name="search drug"
               ></input>
-              <input type="submit" value="Szukaj">
-                {/* <Link to="/searchedItems">Szukaj</Link> */}
-              </input>
+              <input id="btn-search" type="submit" value="Szukaj"></input>
             </form>
             <Link className="basket" to="./basket">
               <i

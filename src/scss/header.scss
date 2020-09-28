@@ -86,14 +86,51 @@
 @media screen and (min-width: 650px) {
   .header {
     margin-top: 0;
-    &__logoAndsearch {
+    &__logoAndSearch {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding-top: 1rem;
+      &__form {
+        min-width: 50vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      } //tu pozmieniac
     }
   }
+
+  #input-search {
+    height: 4rem;
+    line-height: 60px;
+    background-color: #f1f1f1;
+    border: 0;
+    padding: 0 30px;
+    font-size: 18px;
+    border-radius: 15px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    outline: none;
+    display: inline;
+  }
+  #btn-search {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 0;
+    line-height: 24px;
+    width: 15%;
+    height: 4rem;
+    border: none;
+    background-color: #034c8c;
+    color: white;
+    font-weight: 600;
+    outline: none;
+    &:hover {
+      color: #d9042b;
+    }
+  }
+
   .basket {
     position: static;
   }
