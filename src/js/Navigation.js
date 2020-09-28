@@ -31,7 +31,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
     <>
       <header className="container">
         <div className="header">
-          <div className="header__logoAndsearch">
+          <div className="header__logoAndSearch">
             <div className="header__logoAndSearch__logo">
               <span className="logo__title">Logo Apteki</span>
             </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import Image from "./Image";
 
 const SearchedItems = ({ onList }) => {
   console.log(onList);
@@ -20,7 +21,7 @@ const SearchedItems = ({ onList }) => {
             return (
               <li key={index}>
                 <div className="item">
-                  <div className="item__image"></div>
+                  <Image />
                   <div className="item__name">
                     {item.nazwa}
                     <span>({item.nazPowStos}),</span> {item.dawka},{item.postac}
@@ -34,7 +35,7 @@ const SearchedItems = ({ onList }) => {
                   <div className="item__manager">
                     <div className="item__manager__price">{price} zł</div>
                     <div className="item__manager__buy">
-                      <i class="fas fa-shopping-cart"></i>
+                      <i className="fas fa-shopping-cart"></i>
                     </div>
                   </div>
                 </div>
