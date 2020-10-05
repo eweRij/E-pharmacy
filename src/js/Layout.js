@@ -7,6 +7,10 @@ import Footer from "./Footer";
 import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
+import LoggIn from "../Autentication/LoggIn";
+import SignIn from "../Autentication/SignIn";
+import SignUp from "../Autentication/SignUp";
+import PasswordReset from "../Autentication/PasswordReset";
 import "../scss/layout.scss";
 
 const Layout = () => {
@@ -105,6 +109,10 @@ const Layout = () => {
               />
             )}
           />
+          <Route path="/loggIn" component={LoggIn} />
+          <Route path="/passwordReset" component={PasswordReset} />
+          <Route path="/signIn" component={SignIn} />
+          <Route path="/signUp" component={SignUp} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
