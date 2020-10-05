@@ -88,6 +88,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
                   Zrealizuj receptę!
                 </Link>
               </li>
+              <li>
+                <Link to="/loggIn">Zaloguj się!</Link>
+              </li>
             </ul>
           </nav>
         </div>

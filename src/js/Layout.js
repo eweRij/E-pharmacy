@@ -8,6 +8,11 @@ import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
 import "../scss/layout.scss";
+import LoggIn from "../Login/LoggIn";
+import SignIn from "../Login/SignIn";
+import SignUp from "../Login/SignUp";
+import ProfilePage from "../Login/ProfilePage";
+import PasswordReset from "../Login/PasswordReset";
 
 const Layout = () => {
   const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
@@ -105,6 +110,11 @@ const Layout = () => {
               />
             )}
           />
+          <Route path="/loggIn" component={LoggIn} />
+          <Route path="/signIn" component={SignIn} />
+          <Route path="/signUp" component={SignUp} />
+          {/* <Route path="/passwordReset" component={PasswordReset} />
+          <Route path="/profilePage" component={ProfilePage} /> */}
           <Route component={NotFound} />
         </Switch>
         <Footer />
