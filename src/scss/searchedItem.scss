@@ -19,6 +19,7 @@
     transition: 0.3s;
     &:hover {
       cursor: pointer;
+      zoom: 1;
       -webkit-box-shadow: -5px 9px 7px 0px rgba(107, 105, 107, 1);
       -moz-box-shadow: -5px 9px 7px 0px rgba(107, 105, 107, 1);
       box-shadow: -5px 9px 7px 0px rgba(107, 105, 107, 1);
