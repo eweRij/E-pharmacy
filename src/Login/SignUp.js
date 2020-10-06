@@ -1,17 +1,40 @@
 import React, { useState } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import { signInWithGoogle, auth, generateUserDocument } from "../firebase";
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
-  const createUserWithEmailAndPasswordHandler = (event, email, password) => {
+  // const createUserWithEmailAndPasswordHandler = (event, email, password) => {
+  //   event.preventDefault();
+  //   setEmail("");
+  //   setPassword("");
+  //   setDisplayName("");
+  // };
+
+  const createUserWithEmailAndPasswordHandler = async (
+    event,
+    email,
+    password
+  ) => {
     event.preventDefault();
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      generateUserDocument(user, { displayName });
+    } catch (error) {
+      setError("Error Signing up with email and password");
+    }
+
     setEmail("");
     setPassword("");
     setDisplayName("");
   };
-  const onChangeHandler = (event) => {
+  function onChangeHandler(event) {
     const { name, value } = event.currentTarget;
     if (name === "userEmail") {
       setEmail(value);
@@ -20,7 +43,7 @@ const SignUp = () => {
     } else if (name === "displayName") {
       setDisplayName(value);
     }
-  };
+  }
   return (
     <div className="mt-8">
       <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1>
@@ -77,7 +100,10 @@ const SignUp = () => {
           </button>
         </form>
         <p className="text-center my-3">or</p>
-        <button className="bg-red-500 hover:bg-red-600 w-full py-2 text-white">
+        <button
+          onClick={signInWithGoogle}
+          className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
+        >
           Sign In with Google
         </button>
         <p className="text-center my-3">

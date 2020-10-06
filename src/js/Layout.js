@@ -110,11 +110,13 @@ const Layout = () => {
               />
             )}
           />
+
           <Route path="/loggIn" component={LoggIn} />
           <Route path="/signIn" component={SignIn} />
           <Route path="/signUp" component={SignUp} />
           <Route path="/passwordReset" component={PasswordReset} />
           <Route path="/profilePage" component={ProfilePage} />
+
           <Route component={NotFound} />
         </Switch>
         <Footer />
