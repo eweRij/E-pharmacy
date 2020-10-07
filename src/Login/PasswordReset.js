@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { auth } from "../firebase";
+import { UserContext } from "../providers/UserProvider";
+import { Link } from "@reach/router";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
   const [error, setError] = useState(null);
+
   const onChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
+
     if (name === "userEmail") {
       setEmail(value);
     }
   };
+
   const sendResetEmail = (event) => {
     event.preventDefault();
     auth
@@ -27,25 +31,13 @@ const PasswordReset = () => {
       });
   };
   return (
-    <div className="mt-8">
-      <h1 className="text-xl text-center font-bold mb-3">
-        Reset your Password
-      </h1>
-      <div className="border border-blue-300 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
+    <div>
+      <h1>Zresetuj swoje hasło</h1>
+      <div>
         <form action="">
-          {emailHasBeenSent && (
-            <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
-              An email has been sent to you!
-            </div>
-          )}
-          {error !== null && (
-            <div className="py-3 bg-red-600 w-full text-white text-center mb-3">
-              {error}
-            </div>
-          )}
-          <label htmlFor="userEmail" className="w-full block">
-            Email:
-          </label>
+          {emailHasBeenSent && <div>An email has been sent to you!</div>}
+          {error !== null && <div>{error}</div>}
+          <label htmlFor="userEmail">Email:</label>
           <input
             type="email"
             name="userEmail"
@@ -53,23 +45,26 @@ const PasswordReset = () => {
             value={email}
             placeholder="Input your email"
             onChange={onChangeHandler}
-            className="mb-3 w-full px-1 py-2"
           />
           <button
-            onClick={sendResetEmail}
-            className="w-full bg-blue-400 text-white py-3"
+            onClick={(event) => {
+              sendResetEmail(event);
+            }}
           >
-            Send me a reset link
+            Wyślij link z nowym hasłem.
           </button>
         </form>
+
         <Link
-          to="/log/signIn"
+          to="/log"
           className="my-2 text-blue-700 hover:text-blue-800 text-center block"
         >
-          &larr; back to sign in page
+          &larr; powrót do strony z logowaniem
         </Link>
       </div>
     </div>
   );
 };
+
 export default PasswordReset;
+//ok

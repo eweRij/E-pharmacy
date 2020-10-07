@@ -11,6 +11,7 @@ const firebaseConfig = {
   storageBucket: "e-pharmacy-290822.appspot.com",
   messagingSenderId: "1088549891322",
   appId: "1:1088549891322:web:44fc0b43e499cc2b522d43",
+  measurementId: "G-X8PQL9HHDQ",
 };
 
 firebase.initializeApp(firebaseConfig);
