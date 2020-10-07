@@ -63,7 +63,7 @@ const PasswordReset = () => {
           </button>
         </form>
         <Link
-          to="/signIn"
+          to="/log/signIn"
           className="my-2 text-blue-700 hover:text-blue-800 text-center block"
         >
           &larr; back to sign in page
