@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { functions } from "firebase";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBSSvTFqPxkcI5mz9suctBy5ab3h583C4s",
@@ -11,17 +12,23 @@ const firebaseConfig = {
   messagingSenderId: "1088549891322",
   appId: "1:1088549891322:web:44fc0b43e499cc2b522d43",
 };
+
+firebase.initializeApp(firebaseConfig);
+
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
 const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = (e) => {
-  e.preventDefault();
+export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
-  console.log("logowanie");
-}; // logowanie z gogla
+};
 
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
+
   const userRef = firestore.doc(`users/${user.uid}`);
   const snapshot = await userRef.get();
+
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = user;
     try {
@@ -37,10 +44,12 @@ export const generateUserDocument = async (user, additionalData) => {
   }
   return getUserDocument(user.uid);
 };
+
 const getUserDocument = async (uid) => {
   if (!uid) return null;
   try {
     const userDocument = await firestore.doc(`users/${uid}`).get();
+
     return {
       uid,
       ...userDocument.data(),
@@ -49,10 +58,6 @@ const getUserDocument = async (uid) => {
     console.error("Error fetching user", error);
   }
 };
-firebase.initializeApp(firebaseConfig);
-export const auth = firebase.auth();
-console.log(auth);
-export const firestore = firebase.firestore();
 
 // REACT_APP_API_KEY = "AIzaSyBSSvTFqPxkcI5mz9suctBy5ab3h583C4s";
 
