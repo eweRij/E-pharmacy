@@ -9,6 +9,11 @@ import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
 import Log from "./Log";
 import "../scss/layout.scss";
+// import LoggIn from "../Login/LoggIn";
+// import SignIn from "../Login/SignIn";
+// import SignUp from "../Login/SignUp";
+// import ProfilePage from "../Login/ProfilePage";
+// import PasswordReset from "../Login/PasswordReset";
 
 const Layout = () => {
   const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
