@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
+import Log from "./Log";
 import "../scss/layout.scss";
 
 const Layout = () => {
@@ -105,6 +106,7 @@ const Layout = () => {
               />
             )}
           />
+          <Route path="/log" component={Log} />
           <Route component={NotFound} />
         </Switch>
         <Footer />

@@ -15,10 +15,11 @@ const Navigation = ({ onClick, trigger, showList }) => {
     e.preventDefault();
     fetch(`${API}`)
       .then((response) => response.json())
-      .then((data) => setDrugs(data))
+      .then((data) => setDrugs(data)) // cos nie tak z serverem
       .catch((err) => console.log(err));
+    console.log(drugs);
   };
-  console.log(drugs);
+
   const handleClearHistory = () => {
     setDrugs([]);
   }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
@@ -87,6 +88,9 @@ const Navigation = ({ onClick, trigger, showList }) => {
                 >
                   Zrealizuj receptę!
                 </Link>
+              </li>
+              <li>
+                <Link to="/log">Zaloguj się</Link>
               </li>
             </ul>
           </nav>
