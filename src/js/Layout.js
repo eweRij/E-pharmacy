@@ -58,24 +58,32 @@ const Layout = () => {
   const [quantity, setQuantity] = useState(1);
   const [pay, setPay] = useState(0);
 
-  const handleBasket = (item, price) => {
+  const handleBasket = (event, item, price) => {
     setBasket((prev) => {
       return [...prev, item];
     });
-    setPrice(price);
-    setPay((prev) => prev + price);
-
-    console.log(basket);
-  };
-  useEffect(() => {
     setPrice(price * quantity);
     setPay((prev) => prev + price);
-  }, [quantity]); //poprawić z buttonami
-
-  const handleQuantity = (e) => {
-    e.preventDefault();
-    setQuantity(e.target.value);
+    console.log(basket);
+    console.log(event.target);
   };
+  const handleQuantityAdd = (price) => {
+    setQuantity((prev) => prev + 1);
+    setPay((prev) => prev + price);
+  };
+  const handleQuantitySubstract = (price) => {
+    setQuantity((prev) => prev - 1);
+    setPay((prev) => prev - price);
+  };
+  // useEffect(() => {
+
+  //   setPay((prev) => prev + price);
+  // }, [quantity]); //poprawić z buttonami
+
+  // const handleQuantity = (e) => {
+  //   e.preventDefault();
+  //   setQuantity(e.target.value);
+  // };
 
   const NotFound = () => {
     return <h1>Coś poszło nie tak, nie odnazleżliśmy strony:(</h1>;
@@ -118,10 +126,11 @@ const Layout = () => {
                 imageToShow={searchedItem}
                 showBasket={basket}
                 onBuy={handleBasket}
-                price={price}
                 pay={pay}
                 quantity={quantity}
-                changeQuantity={handleQuantity}
+                price={price}
+                changeQuantityAdd={handleQuantityAdd}
+                changeQuantitySubstract={handleQuantitySubstract}
               />
             )}
           />

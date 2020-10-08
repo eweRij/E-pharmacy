@@ -4,7 +4,7 @@ import { UserContext } from "../providers/UserProvider";
 import { auth } from "../firebase";
 const ProfilePage = () => {
   const user = useContext(UserContext);
-  // const { displayName, email } = user;
+
   console.log(user);
 
   return (
@@ -13,7 +13,7 @@ const ProfilePage = () => {
         <div
           style={{
             background: `url(
-              "https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png"
+              ${user.photoURL}
             )  no-repeat center center`,
             backgroundSize: "cover",
             height: "200px",
@@ -22,8 +22,8 @@ const ProfilePage = () => {
           className=""
         ></div>
         <div className="">
-          <h2 className="">b</h2>
-          <h3 className="">f</h3>
+          <h2 className="">{user.displayName}</h2>
+          <h3 className="">{user.email}</h3>
         </div>
       </div>
       <button

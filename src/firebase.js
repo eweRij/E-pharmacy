@@ -24,12 +24,12 @@ export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
 };
 
-export const generateUserDocument = async (user, additionalData) => {
+export const generateUserDocument = async (user) => {
   if (!user) return;
 
-  const userRef = firestore.doc(`users/${user.uid}`);
+  const userRef = await firestore.doc(`users/${user.uid}`);
   const snapshot = await userRef.get();
-
+  console.log("tylek", snapshot);
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = user;
     try {
@@ -37,13 +37,12 @@ export const generateUserDocument = async (user, additionalData) => {
         displayName,
         email,
         photoURL,
-        ...additionalData,
       });
     } catch (error) {
       console.error("Error creating user document", error);
     }
   }
-  return getUserDocument(user.uid);
+  return userRef;
 };
 
 const getUserDocument = async (uid) => {

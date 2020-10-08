@@ -12,7 +12,8 @@ const Basket = ({
   price,
   pay,
   quantity,
-  changeQuantity,
+  changeQuantityAdd,
+  changeQuantitySubstract,
 }) => {
   //ustawianie liczby itemów
   // const [quantity, setQuantity] = useState(1);
@@ -21,6 +22,7 @@ const Basket = ({
   //   e.preventDefault();
   //   setQuantity(e.target.value);
   // };
+
   if (itemsToShow.length > 0) {
     //jak wyczyscic ustawienia po ponownym wyrenderowaniu?
 
@@ -44,14 +46,29 @@ const Basket = ({
                     {item.nazwa} {item.dawka} {item.postac}
                   </span>
                   <span>{price} zł</span>
-                  <input
+                  {/* <input
                     onChange={(e) => {
                       changeQuantity(e);
                     }}
                     type="number"
                     value={quantity}
                     name="quantity"
-                  ></input>
+                  ></input> */}
+                  <button
+                    onClick={(e) => {
+                      changeQuantitySubstract(price);
+                    }}
+                  >
+                    -
+                  </button>
+                  <span>{quantity}</span>
+                  <button
+                    onClick={() => {
+                      changeQuantityAdd(price);
+                    }}
+                  >
+                    +
+                  </button>
                 </li>
               );
             })}

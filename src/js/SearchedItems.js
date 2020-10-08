@@ -4,12 +4,10 @@ const imageSearch = require("image-search-google");
 
 const SearchedItems = ({ onList, imageToShow, onBuy }) => {
   console.log(onList);
-  const [price, setPrice] = useState("");
+  const price = 15;
   const [image, setImage] = useState(false);
 
   useEffect(() => {
-    setPrice(Math.floor(Math.random() * (100 - 0, 50 + 1)) + 0, 50);
-
     const client = new imageSearch(
       "396fd837a67ea9f46",
       "AIzaSyBSSvTFqPxkcI5mz9suctBy5ab3h583C4s"
@@ -59,8 +57,8 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
                     <div className="item__manager__price">{price} zł</div>
                     <div className="item__manager__buy">
                       <button
-                        onClick={() => {
-                          onBuy(item, price);
+                        onClick={(event) => {
+                          onBuy(event, item, price);
                         }}
                       >
                         <i className="fas fa-shopping-cart"></i>
