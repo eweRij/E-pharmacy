@@ -22,6 +22,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
 
   const handleClearHistory = () => {
     setDrugs([]);
+    console.log("czyszcze");
   }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
   console.log(searchItem);
   useEffect(() => {
@@ -51,6 +52,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
             </form>
             <Link className="basket" to="./basket">
               <i
+                onClick={handleClearHistory}
                 style={{ color: "#034C8C", fontSize: "2.3rem" }}
                 className="fas fa-shopping-basket"
               ></i>

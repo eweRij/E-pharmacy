@@ -52,6 +52,31 @@ const Layout = () => {
 
   console.log(filteredDrugs);
 
+  //basket
+  const [basket, setBasket] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [pay, setPay] = useState(0);
+
+  const handleBasket = (item, price) => {
+    setBasket((prev) => {
+      return [...prev, item];
+    });
+    setPrice(price);
+    setPay((prev) => prev + price);
+
+    console.log(basket);
+  };
+  useEffect(() => {
+    setPrice(price * quantity);
+    setPay((prev) => prev + price);
+  }, [quantity]); //poprawić z buttonami
+
+  const handleQuantity = (e) => {
+    e.preventDefault();
+    setQuantity(e.target.value);
+  };
+
   const NotFound = () => {
     return <h1>Coś poszło nie tak, nie odnazleżliśmy strony:(</h1>;
   }; //wiadomo
@@ -73,6 +98,7 @@ const Layout = () => {
                 {...props}
                 itemsToShow={filteredDrugs}
                 imageToShow={searchedItem}
+                onBuy={handleBasket}
               />
             )}
           />
@@ -82,7 +108,23 @@ const Layout = () => {
               <SearchedItems {...props} itemsToShow={filteredDrugs} />
             )}
           /> */}
-          <Route path="/basket" component={Basket} />
+          <Route
+            exact
+            path="/basket"
+            render={(props) => (
+              <Basket
+                {...props}
+                itemsToShow={filteredDrugs}
+                imageToShow={searchedItem}
+                showBasket={basket}
+                onBuy={handleBasket}
+                price={price}
+                pay={pay}
+                quantity={quantity}
+                changeQuantity={handleQuantity}
+              />
+            )}
+          />
           {/* <Route path="/otc" component={Otc} /> */}
           <Route
             exact

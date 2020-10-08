@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "./Image";
 const imageSearch = require("image-search-google");
 
-const SearchedItems = ({ onList, imageToShow }) => {
+const SearchedItems = ({ onList, imageToShow, onBuy }) => {
   console.log(onList);
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(false);
@@ -32,7 +32,7 @@ const SearchedItems = ({ onList, imageToShow }) => {
       .catch((error) => console.log(error));
   }, [imageToShow]);
 
-  if (onList && image) {
+  if (onList && image && typeof onBuy === "function") {
     console.log(image[5].url);
     return (
       <>
@@ -58,7 +58,13 @@ const SearchedItems = ({ onList, imageToShow }) => {
                   <div className="item__manager">
                     <div className="item__manager__price">{price} zł</div>
                     <div className="item__manager__buy">
-                      <i className="fas fa-shopping-cart"></i>
+                      <button
+                        onClick={() => {
+                          onBuy(item, price);
+                        }}
+                      >
+                        <i className="fas fa-shopping-cart"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -69,7 +75,12 @@ const SearchedItems = ({ onList, imageToShow }) => {
       </>
     );
   } else {
-    return null;
+    return (
+      <h1>
+        Przykro mi, ale nie znależliśmy to, czego szukasz. Spróbuj ponownie lub
+        skontaktuj się z nami, postaramy się pomóc!
+      </h1>
+    );
   }
 };
 
