@@ -36,22 +36,19 @@ const Layout = () => {
   //   }
   // });
   const handleVisibility = () => {
+    //do mediqueries dla małego ekranu
     //klikanie zmienia widocznosc przekazujemy jako props do nava
     setVisibility((prev) => !prev);
     setMenu((prev) => !prev);
   };
   const handleFilteredDrugs = (drugs, searchItem) => {
-    // przekazujemy jako props do podstron //jak zrobic zeby tablica sie czyscila w nowym oknie??
-    // const newDrugs = drugs.filter((drug) => {
-    //   return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
-    // }); //działa wyszukuje po nazwie
     setFilteredDrugs(
       drugs.filter((drug) => {
         return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
       })
     );
     setSearchedItem(searchItem);
-  };
+  }; //filtrowanie leków
 
   console.log(filteredDrugs);
 

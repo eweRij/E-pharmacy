@@ -51,7 +51,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
             </form>
             <Link className="basket" to="./basket">
               <i
-                style={{ color: "#034C8C", fontSize: "1.5rem" }}
+                style={{ color: "#034C8C", fontSize: "2.3rem" }}
                 className="fas fa-shopping-basket"
               ></i>
             </Link>

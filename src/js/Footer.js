@@ -5,7 +5,7 @@ import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <footer>
+      <footer className="container">
         <section>
           <div className="pr">
             <h2>Random stuff</h2>
