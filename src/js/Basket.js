@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
@@ -8,13 +8,29 @@ const Basket = ({
   itemsToShow,
   imageToShow,
   onBuy,
-  showBasket,
-  price,
+  // showBasket,
+  // price,
   pay,
   quantity,
   changeQuantityAdd,
   changeQuantitySubstract,
 }) => {
+  const API = "http://localhost:3001/basket";
+  const [basketItems, setBasketItems] = useState(false);
+  // const [pay, setPay] = useState(0);
+  let price = 15;
+
+  useEffect(() => {
+    fetch(`${API}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setBasketItems(data);
+      })
+      .catch((err) => console.log(err));
+    console.log(basketItems);
+  }, []);
+  // useEffect(() => setPay((prev) => prev + price), [basketItems]);
+
   //ustawianie liczby itemów
   // const [quantity, setQuantity] = useState(1);
 
@@ -33,19 +49,19 @@ const Basket = ({
         onBuy={onBuy}
       ></SearchedItems>
     );
-  } else {
+  } else if (basketItems) {
     return (
       <>
         <h1>Twój koszyk:</h1>
         <div>
           <ul>
-            {showBasket.map((item, index) => {
+            {basketItems.map((item, index) => {
               return (
                 <li key={index}>
                   <span>
-                    {item.nazwa} {item.dawka} {item.postac}
+                    {item.name} {item.dose} {item.form}
                   </span>
-                  <span>{price} zł</span>
+                  <span>{item.price} zł</span>
                   {/* <input
                     onChange={(e) => {
                       changeQuantity(e);
@@ -55,16 +71,16 @@ const Basket = ({
                     name="quantity"
                   ></input> */}
                   <button
-                    onClick={(e) => {
-                      changeQuantitySubstract(price);
+                    onClick={(event) => {
+                      changeQuantitySubstract(price, index, event);
                     }}
                   >
                     -
                   </button>
                   <span>{quantity}</span>
                   <button
-                    onClick={() => {
-                      changeQuantityAdd(price);
+                    onClick={(event) => {
+                      changeQuantityAdd(price, event);
                     }}
                   >
                     +
@@ -77,6 +93,8 @@ const Basket = ({
         </div>
       </>
     );
+  } else {
+    return <h1>Trwa ładowanie strony...</h1>;
   }
 };
 

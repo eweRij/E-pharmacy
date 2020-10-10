@@ -53,28 +53,58 @@ const Layout = () => {
   console.log(filteredDrugs);
 
   //basket
-  const [basket, setBasket] = useState([]);
-  const [price, setPrice] = useState(0);
+  // const [basket, setBasket] = useState([]);
+  // const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [pay, setPay] = useState(0);
+  const API = "http://localhost:3001/basket";
 
-  const handleBasket = (event, item, price) => {
-    setBasket((prev) => {
-      return [...prev, item];
-    });
-    setPrice(price * quantity);
-    setPay((prev) => prev + price);
-    console.log(basket);
-    console.log(event.target);
+  // const handleBasket = (event, item, price) => {
+  //   setBasket((prev) => {
+  //     return [...prev, item];
+  //   });
+  //   setPrice(price * quantity);
+  //   setPay((prev) => prev + price);
+  //   console.log(basket);
+  //   console.log(event.target);
+  // };
+
+  const handleBasket = (e, item, price) => {
+    // tworzymy dopiero teraz obiekt na podstaie zminianych przez inputy danych!!
+    e.preventDefault();
+    const newBasket = {
+      name: item.nazwa,
+      dose: item.dawka,
+      form: item.postac,
+      producer: item.podmOdpow,
+      prize: price,
+    };
+    console.log(newBasket);
+
+    fetch(`${API}`, {
+      method: "POST",
+      body: JSON.stringify(newBasket),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  const handleQuantityAdd = (price) => {
-    setQuantity((prev) => prev + 1);
-    setPay((prev) => prev + price);
-  };
-  const handleQuantitySubstract = (price) => {
-    setQuantity((prev) => prev - 1);
-    setPay((prev) => prev - price);
-  };
+
+  // const handleQuantityAdd = (price) => {
+  //   setQuantity((prev) => prev + 1);
+  //   setPay((prev) => prev + price);
+  // };
+  // const handleQuantitySubstract = (price) => {
+  //   setQuantity((prev) => prev - 1);
+  //   setPay((prev) => prev - price);
+  // };
   // useEffect(() => {
 
   //   setPay((prev) => prev + price);
@@ -124,13 +154,13 @@ const Layout = () => {
                 {...props}
                 itemsToShow={filteredDrugs}
                 imageToShow={searchedItem}
-                showBasket={basket}
+                // showBasket={basket}
                 onBuy={handleBasket}
                 pay={pay}
                 quantity={quantity}
-                price={price}
-                changeQuantityAdd={handleQuantityAdd}
-                changeQuantitySubstract={handleQuantitySubstract}
+                // price={price}
+                // changeQuantityAdd={handleQuantityAdd}
+                // changeQuantitySubstract={handleQuantitySubstract}
               />
             )}
           />
