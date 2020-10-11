@@ -13,6 +13,7 @@ const Basket = ({
   // price,
   pay,
   // quantity,
+  remove,
   changeQuantityAdd,
   changeQuantitySubstract,
 }) => {
@@ -20,6 +21,7 @@ const Basket = ({
   const [basketItems, setBasketItems] = useState(false);
   // const [pay, setPay] = useState(0);
   let price = 15;
+  console.log(API);
 
   useEffect(() => {
     fetch(`${API}`)
@@ -28,8 +30,10 @@ const Basket = ({
         setBasketItems(data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [pay]);
+
   console.log(basketItems);
+  console.log(pay);
   // useEffect(() => setPay((prev) => prev + price), [basketItems]);
 
   //ustawianie liczby itemów
@@ -63,16 +67,20 @@ const Basket = ({
                     itemToBuy={item}
                     index={index}
                     price={price}
+                    // pay={pay}
                     // quantity={quantity}
                     changeQuantityAdd={changeQuantityAdd}
                     changeQuantitySubstract={changeQuantitySubstract}
+                    remove={remove}
                   />
                 </li>
               );
             })}
           </ul>
           <div>Kwota do zapłaty :{pay} zł</div>
-          <button>Kupuję!</button>
+          <button>
+            <Link to="onBuy">Kupuję!</Link>
+          </button>
         </div>
       </>
     );

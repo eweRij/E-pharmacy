@@ -2,26 +2,29 @@
 .header {
   justify-content: center;
   align-items: center;
-  margin: 1rem;
+  margin-top:7rem;
+  
   &__logoAndsearch {
-    width: 50%;
-    margin-left: 50vw;
+    width: 100%;
     min-height: 25vh;
     display: flex;
-    // flex-direction: column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     // padding-top: 4rem;
     &__logo {
-      width: 15vw;
-      justify-self: center;
+      max-width: 30vw;
+      display: flex;
+      justify-content: center;
     }
     &_form {
       max-width: 30vw;
+      margin-bottom: 1rem;
     }
   }
 }
 .logo__title {
+  width: 50%;
   background: #034c8c;
   color: white;
   font-size: 1rem;
@@ -29,17 +32,17 @@
   font-style: italic;
   padding: 1rem;
   border-radius: 5px;
-  margin-bottom: 2rem;
+  justify-self: center;
 }
 .basket {
   position: absolute;
-  right: 30px;
+  right:20px;
   top: 40px;
 }
 #menu-trigger {
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 0.03rem;
 }
 .menu {
   display: none;
@@ -81,8 +84,12 @@
     top: 15%;
     list-style: none;
     left: 0;
+    font-weight: 600;
     li {
       padding: 0.5rem 0;
+      &:active {
+        background-color:#034c8c;
+      }
     }
   }
 }
@@ -91,17 +98,49 @@
   text-decoration: none;
   outline: none;
 }
+#input-search {
+  width:30vw;
+  height: 2rem;
+  line-height: 40px;
+  background-color: #f1f1f1;
+  border: 0;
+  padding: 0 30px;
+  font-size: 15px;
+  border-radius: 15px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  outline: none;
+  display: inline;
+}
+#btn-search {
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 0;
+  line-height: 24px;
+  width: 15%;
+  height:2rem;
+  border: none;
+  background-color: #034c8c;
+  color: white;
+  font-weight: 600;
+  outline: none;
+  &:hover {
+    color: #d9042b;
+  }
+}
+
 @media screen and (min-width: 650px) {
   .header {
     margin-top: 0;
     &__logoAndSearch {
+  
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding-top: 1rem;
       &__form {
-        min-width: 50vw;
+        width: 50vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -110,12 +149,13 @@
   }
 
   #input-search {
+    margin-bottom: 2rem;
     height: 4rem;
     line-height: 60px;
     background-color: #f1f1f1;
     border: 0;
     padding: 0 30px;
-    font-size: 18px;
+    font-size: 1rem;
     border-radius: 15px;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
@@ -123,6 +163,8 @@
     display: inline;
   }
   #btn-search {
+    width:50%;
+    margin-bottom: 2rem;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     padding: 0;
@@ -175,9 +217,137 @@
 .links {
   text-decoration: none;
   color: #f1f1f1;
+  position: relative;
   &:hover {
     text-decoration: none;
     color: #f1f1f1;
     text-shadow: -6px -2px 0px rgba(246, 238, 238, 0.26);
   }
 }
+.badge {
+    border-radius: 50% 50%;
+    right:4%;
+    top:9%;
+    position: absolute;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 600;
+    height: 20px;
+    line-height: 19px;
+    padding: 0 2px 0 2px;
+    min-width: 20px;
+    text-align: center;
+    background-color: #d9042b;
+}
+
+// .header {
+//   justify-content: center;
+//   align-items: center;
+// }
+// .logo {
+//   padding-top: 7rem;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   &__title {
+//     background: #fc4887;
+//     color: white;
+//     font-size: 3rem;
+//     font-weight: 900;
+//     font-style: italic;
+//     padding: 1rem;
+//     border-radius: 5px;
+//   }
+//   &__subtitle {
+//     align-self: center;
+//     font-size: 1rem;
+//     font-weight: bold;
+//     margin: 10px 0 0 0;
+//   }
+// }
+// #menu-trigger {
+//   position: absolute;
+//   left: 10px;
+//   top: 10px;
+// }
+// .menu {
+//   display: none;
+//   list-style: none;
+//   li {
+//     display: inline-block;
+//     padding: 0 1rem;
+//     &.active {
+//       background: darkgrey;
+//       border-radius: 5px;
+//       padding: 3px 5px;
+//       a {
+//         color: white;
+//       }
+//     }
+//     &:last-child {
+//       padding-right: 0;
+//     }
+//     a {
+//       text-decoration: none;
+//       color: gray;
+//     }
+//   }
+// }
+// body,
+// .menu {
+//   transition: 2s;
+// }
+// body.moved {
+//   margin-left: 50vw;
+// }
+
+// #menu-trigger {
+//   margin: 10px;
+//   border: 0;
+//   font-size: 3rem;
+//   background: none;
+//   outline: none;
+// } //bardzo wazne przy hamburgerze!!!!!
+// .mobile-section.opened {
+//   //ta klase trzeba dodac po kliknieciu w hamburgera na mobilce!!
+//   .menu {
+//     display: flex;
+//     flex-direction: column;
+//     position: absolute;
+//     left: 0;
+//     padding: 2rem;
+//     width: 50vw;
+//     background: #f1f1f1;
+//     height: 100vh;
+//     top: 15%;
+//     list-style: none;
+//     left: 0;
+//     li {
+//       padding: 0.5rem 0;
+//       a {
+//         color: black;
+//         text-decoration: none;
+//       }
+//     }
+//   }
+// }
+// @media screen and (min-width: 650px) {
+//   #menu-trigger {
+//     display: none;
+//   }
+//   .menu {
+//     display: block;
+//   }
+//   .logo {
+//     display: block;
+//     padding: 0;
+//     &__subtitle {
+//       padding-left: 1rem;
+//     }
+//   }
+//   .header {
+//     padding-top: 2rem;
+//     justify-content: space-between;
+//   }
+// }

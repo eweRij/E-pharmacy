@@ -4,11 +4,25 @@ import ReactDOM from "react-dom";
 const ItemToBuy = ({
   itemToBuy,
   // quantity,
+
   changeQuantityAdd,
   changeQuantitySubstract,
   // index,
   price,
+  remove,
 }) => {
+  const API = "http://localhost:8000/basket";
+  // const handleRemove = (index, pay) => {
+  //   fetch(`${API}/${index}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((response) => {
+  //       console.log(response.ok);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   return (
     <>
       <span>
@@ -38,6 +52,13 @@ const ItemToBuy = ({
         }}
       >
         +
+      </button>
+      <button
+        onClick={() => {
+          remove(itemToBuy);
+        }}
+      >
+        <i class="far fa-times-circle"></i>
       </button>
     </>
   );

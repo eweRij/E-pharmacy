@@ -1,108 +1,60 @@
 {
   "basket": [
     {
-      "name": "Acatar Acti Form",
-      "dose": "12,2 mg",
-      "form": "kapsułki twarde",
-      "producer": "US Pharmacia Sp. z o.o.",
+      "name": "Depakine Chrono 500",
+      "dose": "333 mg + 145 mg",
+      "form": "tabletki powlekane o przedłużonym uwalnianiu",
+      "producer": "Delfarma Sp. z o.o.",
       "howMany": 1,
       "id": 1
     },
     {
-      "name": "Acatar Allergy",
-      "dose": "1 mg/ml",
-      "form": "aerozol do nosa, roztwór",
-      "producer": "US Pharmacia Sp. z o.o.",
-      "howMany": 2,
+      "name": "Depakine Chronosphere 100",
+      "dose": "(66,66 mg + 29,03 mg)/sasz.",
+      "form": "granulat o przedłużonym uwalnianiu",
+      "producer": "Sanofi-Aventis Sp. z o.o.",
+      "howMany": 1,
       "id": 2
+    },
+    {
+      "name": "Depakine Chronosphere 250",
+      "dose": "(166,76 mg + 72,61 mg)/sasz.",
+      "form": "granulat o przedłużonym uwalnianiu",
+      "producer": "Sanofi-Aventis Sp. z o.o.",
+      "howMany": 1,
+      "id": 3
     },
     {
       "name": "Acatar Acti-Tabs",
       "dose": "60 mg + 2,5 mg",
       "form": "tabletki",
       "producer": "US Pharmacia Sp. z o.o.",
-      "howMany": 3,
-      "id": 3
-    },
-    {
-      "name": "Aspirin C",
-      "dose": "400 mg + 240 mg",
-      "form": "tabletki musujące",
-      "producer": "Avrentim Sp. z o.o.",
       "howMany": 1,
       "id": 4
     },
     {
-      "name": "Aspirin 300",
-      "dose": "300 mg",
-      "form": "tabletki powlekane",
-      "producer": "Bayer Sp. z o.o.",
+      "name": "Acatar Allergy",
+      "dose": "1 mg/ml",
+      "form": "aerozol do nosa, roztwór",
+      "producer": "US Pharmacia Sp. z o.o.",
       "howMany": 1,
       "id": 5
     },
     {
-      "name": "Aspirin C Forte",
-      "dose": "800 mg + 480 mg",
-      "form": "tabletki musujące",
-      "producer": "Bayer Sp. z o.o.",
+      "name": "Acatar Zatoki Tabs",
+      "dose": "200 mg + 6,1 mg",
+      "form": "tabletki drażowane",
+      "producer": "US Pharmacia Sp. z o.o.",
       "howMany": 1,
       "id": 6
     },
     {
-      "name": "Aspirin Complex",
-      "dose": "500 mg + 30 mg",
-      "form": "granulat do sporządzania zawiesiny doustnej",
-      "producer": "Delfarma Sp. z o.o.",
+      "name": "Acatar Zatoki",
+      "dose": "200 mg + 30 mg",
+      "form": "tabletki powlekane",
+      "producer": "US Pharmacia Sp. z o.o.",
       "howMany": 1,
       "id": 7
-    },
-    {
-      "name": "Aspirin 300",
-      "dose": "300 mg",
-      "form": "tabletki powlekane",
-      "producer": "Bayer Sp. z o.o.",
-      "howMany": 1,
-      "id": 8
-    },
-    {
-      "name": "Aspirin C",
-      "dose": "400 mg + 240 mg",
-      "form": "tabletki musujące",
-      "producer": "Avrentim Sp. z o.o.",
-      "howMany": 1,
-      "id": 9
-    },
-    {
-      "name": "Aspirin C Forte",
-      "dose": "800 mg + 480 mg",
-      "form": "tabletki musujące",
-      "producer": "Bayer Sp. z o.o.",
-      "howMany": 1,
-      "id": 10
-    },
-    {
-      "name": "Aspirin Complex",
-      "dose": "500 mg + 30 mg",
-      "form": "granulat do sporządzania zawiesiny doustnej",
-      "producer": "Delfarma Sp. z o.o.",
-      "howMany": 1,
-      "id": 11
-    },
-    {
-      "name": "Aspirin Complex Hot",
-      "dose": "500 mg + 30 mg",
-      "form": "granulat do sporządzania zawiesiny doustnej",
-      "producer": "Bayer Sp. z o.o.",
-      "howMany": 1,
-      "id": 12
-    },
-    {
-      "name": "Doreta SR",
-      "dose": "75 mg + 650 mg",
-      "form": "tabletki o przedłużonym uwalnianiu",
-      "producer": "Krka, d.d., Novo mesto",
-      "howMany": 1,
-      "id": 13
     }
   ]
 }

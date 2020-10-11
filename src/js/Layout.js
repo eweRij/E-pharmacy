@@ -8,6 +8,7 @@ import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
 import Log from "./Log";
+import onBuy from "./OnBuy";
 
 import "../scss/layout.scss";
 // import LoggIn from "../Login/LoggIn";
@@ -58,6 +59,7 @@ const Layout = () => {
   // const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [pay, setPay] = useState(0);
+  const [inBasket, setInBasket] = useState(0);
   // const [price, setPrice] = useState(0);
   const API = "http://localhost:8000/basket";
 
@@ -70,7 +72,14 @@ const Layout = () => {
   //   console.log(basket);
   //   console.log(event.target);
   // };
-
+  useEffect(() => {
+    fetch(`${API}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setInBasket(data);
+      })
+      .catch((err) => console.log(err));
+  }, [pay]);
   const handleBasket = (e, item, price) => {
     // tworzymy dopiero teraz obiekt na podstaie zminianych przez inputy danych!!
     e.preventDefault();
@@ -157,6 +166,19 @@ const Layout = () => {
   //   setQuantity(e.target.value);
   // };
 
+  const handleRemove = (item) => {
+    fetch(`${API}/${item.id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        console.log(response.ok);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setPay((prev) => prev - 15 * item.howMany);
+  };
+
   const NotFound = () => {
     return <h1>Coś poszło nie tak, nie odnazleżliśmy strony:(</h1>;
   }; //wiadomo
@@ -168,6 +190,7 @@ const Layout = () => {
           onClick={handleVisibility}
           trigger={menu}
           showList={handleFilteredDrugs}
+          inBasket={inBasket}
         />
         <Switch>
           <Route
@@ -203,6 +226,7 @@ const Layout = () => {
                 // price={price}
                 changeQuantityAdd={handleQuantityAdd}
                 changeQuantitySubstract={handleQuantitySubstract}
+                remove={handleRemove}
               />
             )}
           />
@@ -232,6 +256,7 @@ const Layout = () => {
             )}
           />
           <Route path="/log" component={Log} />
+          <Route path="/onBuy" component={onBuy} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
