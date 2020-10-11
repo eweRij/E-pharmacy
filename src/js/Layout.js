@@ -57,7 +57,8 @@ const Layout = () => {
   // const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [pay, setPay] = useState(0);
-  const API = "http://localhost:3001/basket";
+  // const [price, setPrice] = useState(0);
+  const API = "http://localhost:8000/basket";
 
   // const handleBasket = (event, item, price) => {
   //   setBasket((prev) => {
@@ -77,7 +78,7 @@ const Layout = () => {
       dose: item.dawka,
       form: item.postac,
       producer: item.podmOdpow,
-      prize: price,
+      // prize: price,
     };
     console.log(newBasket);
 
@@ -95,7 +96,9 @@ const Layout = () => {
       .catch((error) => {
         console.log(error);
       });
+    setPay((prev) => prev + price);
   };
+  console.log(pay);
 
   // const handleQuantityAdd = (price) => {
   //   setQuantity((prev) => prev + 1);

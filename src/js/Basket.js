@@ -15,7 +15,7 @@ const Basket = ({
   changeQuantityAdd,
   changeQuantitySubstract,
 }) => {
-  const API = "http://localhost:3001/basket";
+  const API = "http://localhost:8000/basket";
   const [basketItems, setBasketItems] = useState(false);
   // const [pay, setPay] = useState(0);
   let price = 15;
@@ -27,8 +27,8 @@ const Basket = ({
         setBasketItems(data);
       })
       .catch((err) => console.log(err));
-    console.log(basketItems);
   }, []);
+  console.log(basketItems);
   // useEffect(() => setPay((prev) => prev + price), [basketItems]);
 
   //ustawianie liczby itemów
@@ -61,7 +61,7 @@ const Basket = ({
                   <span>
                     {item.name} {item.dose} {item.form}
                   </span>
-                  <span>{item.price} zł</span>
+                  <span>{price} zł</span>
                   {/* <input
                     onChange={(e) => {
                       changeQuantity(e);

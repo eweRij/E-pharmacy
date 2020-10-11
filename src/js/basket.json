@@ -5,8 +5,21 @@
       "dose": "60 mg + 2,5 mg",
       "form": "tabletki",
       "producer": "US Pharmacia Sp. z o.o.",
-      "prize": 15,
       "id": 1
+    },
+    {
+      "name": "Acatar Acti Form",
+      "dose": "12,2 mg",
+      "form": "kapsułki twarde",
+      "producer": "US Pharmacia Sp. z o.o.",
+      "id": 2
+    },
+    {
+      "name": "Acatar Zatoki",
+      "dose": "200 mg + 30 mg",
+      "form": "tabletki powlekane",
+      "producer": "US Pharmacia Sp. z o.o.",
+      "id": 3
     }
   ]
 }
