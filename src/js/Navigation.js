@@ -15,12 +15,14 @@ const Navigation = ({ onClick, trigger, showList }) => {
     e.preventDefault();
     fetch(`${API}`)
       .then((response) => response.json())
-      .then((data) => setDrugs(data))
+      .then((data) => setDrugs(data)) // cos nie tak z serverem
       .catch((err) => console.log(err));
+    console.log(drugs);
   };
-  console.log(drugs);
+
   const handleClearHistory = () => {
     setDrugs([]);
+    console.log("czyszcze");
   }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
   console.log(searchItem);
   useEffect(() => {
@@ -50,7 +52,8 @@ const Navigation = ({ onClick, trigger, showList }) => {
             </form>
             <Link className="basket" to="./basket">
               <i
-                style={{ color: "#034C8C", fontSize: "1.5rem" }}
+                onClick={handleClearHistory}
+                style={{ color: "#034C8C", fontSize: "2.3rem" }}
                 className="fas fa-shopping-basket"
               ></i>
             </Link>
@@ -89,7 +92,7 @@ const Navigation = ({ onClick, trigger, showList }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/loggIn">Zaloguj się!</Link>
+                <Link to="/log">Zaloguj się</Link>
               </li>
             </ul>
           </nav>

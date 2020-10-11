@@ -1,19 +1,28 @@
-import React from "react";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Router, Link } from "@reach/router";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import UserProvider from "../providers/UserProvider";
 import ProfilePage from "./ProfilePage";
+import { UserContext } from "../providers/UserProvider";
 import PasswordReset from "./PasswordReset";
-const LoggIn = () => {
-  const user = null;
+function LoggIn() {
+  const user = useContext(UserContext);
   return user ? (
     <ProfilePage />
   ) : (
     <>
-      <Link to="./signUp">Zaloguj się</Link>
-      <Link to="./signIn">Zarejestruj się</Link>
-      <Link to="./passwordReset">Zapomniałeś hasła?</Link>
+      <Link to="/log/signIn">Zaloguj się</Link>
+      <Link to="/log/signUp">Zarejestruj się!</Link>
+      <Link to="/log/passwordReset">Zresetuj hasło</Link>
+      <Router>
+        <SignUp path="/log/signUp" />
+        <SignIn path="/log/signIn" />
+        <PasswordReset path="/log/passwordReset" />
+      </Router>
     </>
   );
-};
+}
+
 export default LoggIn;
+//routy działają

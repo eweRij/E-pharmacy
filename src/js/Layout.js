@@ -7,12 +7,14 @@ import Footer from "./Footer";
 import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
+import Log from "./Log";
+
 import "../scss/layout.scss";
-import LoggIn from "../Login/LoggIn";
-import SignIn from "../Login/SignIn";
-import SignUp from "../Login/SignUp";
-import ProfilePage from "../Login/ProfilePage";
-import PasswordReset from "../Login/PasswordReset";
+// import LoggIn from "../Login/LoggIn";
+// import SignIn from "../Login/SignIn";
+// import SignUp from "../Login/SignUp";
+// import ProfilePage from "../Login/ProfilePage";
+// import PasswordReset from "../Login/PasswordReset";
 
 const Layout = () => {
   const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
@@ -35,24 +37,125 @@ const Layout = () => {
   //   }
   // });
   const handleVisibility = () => {
+    //do mediqueries dla małego ekranu
     //klikanie zmienia widocznosc przekazujemy jako props do nava
     setVisibility((prev) => !prev);
     setMenu((prev) => !prev);
   };
   const handleFilteredDrugs = (drugs, searchItem) => {
-    // przekazujemy jako props do podstron //jak zrobic zeby tablica sie czyscila w nowym oknie??
-    // const newDrugs = drugs.filter((drug) => {
-    //   return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
-    // }); //działa wyszukuje po nazwie
     setFilteredDrugs(
       drugs.filter((drug) => {
         return drug.nazwa.toLowerCase().includes(searchItem.toLowerCase());
       })
     );
     setSearchedItem(searchItem);
-  };
+  }; //filtrowanie leków
 
   console.log(filteredDrugs);
+
+  //basket
+  // const [basket, setBasket] = useState([]);
+  // const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [pay, setPay] = useState(0);
+  // const [price, setPrice] = useState(0);
+  const API = "http://localhost:8000/basket";
+
+  // const handleBasket = (event, item, price) => {
+  //   setBasket((prev) => {
+  //     return [...prev, item];
+  //   });
+  //   setPrice(price * quantity);
+  //   setPay((prev) => prev + price);
+  //   console.log(basket);
+  //   console.log(event.target);
+  // };
+
+  const handleBasket = (e, item, price) => {
+    // tworzymy dopiero teraz obiekt na podstaie zminianych przez inputy danych!!
+    e.preventDefault();
+    const newBasket = {
+      name: item.nazwa,
+      dose: item.dawka,
+      form: item.postac,
+      producer: item.podmOdpow,
+      howMany: 1,
+      // prize: price,
+    };
+    console.log(newBasket);
+
+    fetch(`${API}`, {
+      method: "POST",
+      body: JSON.stringify(newBasket),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setPay((prev) => prev + price);
+  };
+  console.log(pay);
+
+  const handleQuantityAdd = (price, item, event) => {
+    setQuantity((prev) => prev + 1);
+    const data = {
+      howMany: quantity,
+    };
+    fetch(`${API}/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(quantity);
+    setPay((prev) => prev + price);
+  };
+  const handleQuantitySubstract = (price, item, event) => {
+    setQuantity((prev) => prev - 1);
+    const data = {
+      howMany: quantity,
+    };
+    fetch(`${API}/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(quantity);
+
+    setPay((prev) => prev - price);
+  };
+  // useEffect(() => {
+
+  //   setPay((prev) => prev + price);
+  // }, [quantity]); //poprawić z buttonami
+
+  // const handleQuantity = (e) => {
+  //   e.preventDefault();
+  //   setQuantity(e.target.value);
+  // };
 
   const NotFound = () => {
     return <h1>Coś poszło nie tak, nie odnazleżliśmy strony:(</h1>;
@@ -75,6 +178,7 @@ const Layout = () => {
                 {...props}
                 itemsToShow={filteredDrugs}
                 imageToShow={searchedItem}
+                onBuy={handleBasket}
               />
             )}
           />
@@ -84,7 +188,24 @@ const Layout = () => {
               <SearchedItems {...props} itemsToShow={filteredDrugs} />
             )}
           /> */}
-          <Route path="/basket" component={Basket} />
+          <Route
+            exact
+            path="/basket"
+            render={(props) => (
+              <Basket
+                {...props}
+                itemsToShow={filteredDrugs}
+                imageToShow={searchedItem}
+                // showBasket={basket}
+                onBuy={handleBasket}
+                pay={pay}
+                quantity={quantity}
+                // price={price}
+                changeQuantityAdd={handleQuantityAdd}
+                changeQuantitySubstract={handleQuantitySubstract}
+              />
+            )}
+          />
           {/* <Route path="/otc" component={Otc} /> */}
           <Route
             exact
@@ -110,11 +231,7 @@ const Layout = () => {
               />
             )}
           />
-          <Route path="/loggIn" component={LoggIn} />
-          <Route path="/signIn" component={SignIn} />
-          <Route path="/signUp" component={SignUp} />
-          {/* <Route path="/passwordReset" component={PasswordReset} />
-          <Route path="/profilePage" component={ProfilePage} /> */}
+          <Route path="/log" component={Log} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
