@@ -3,6 +3,7 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
+import ItemToBuy from "./ItemToBuy";
 
 const Basket = ({
   itemsToShow,
@@ -11,7 +12,7 @@ const Basket = ({
   // showBasket,
   // price,
   pay,
-  quantity,
+  // quantity,
   changeQuantityAdd,
   changeQuantitySubstract,
 }) => {
@@ -58,38 +59,20 @@ const Basket = ({
             {basketItems.map((item, index) => {
               return (
                 <li key={index}>
-                  <span>
-                    {item.name} {item.dose} {item.form}
-                  </span>
-                  <span>{price} zł</span>
-                  {/* <input
-                    onChange={(e) => {
-                      changeQuantity(e);
-                    }}
-                    type="number"
-                    value={quantity}
-                    name="quantity"
-                  ></input> */}
-                  <button
-                    onClick={(event) => {
-                      changeQuantitySubstract(price, index, event);
-                    }}
-                  >
-                    -
-                  </button>
-                  <span>{quantity}</span>
-                  <button
-                    onClick={(event) => {
-                      changeQuantityAdd(price, event);
-                    }}
-                  >
-                    +
-                  </button>
+                  <ItemToBuy
+                    itemToBuy={item}
+                    index={index}
+                    price={price}
+                    // quantity={quantity}
+                    changeQuantityAdd={changeQuantityAdd}
+                    changeQuantitySubstract={changeQuantitySubstract}
+                  />
                 </li>
               );
             })}
           </ul>
           <div>Kwota do zapłaty :{pay} zł</div>
+          <button>Kupuję!</button>
         </div>
       </>
     );

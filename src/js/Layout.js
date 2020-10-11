@@ -8,6 +8,7 @@ import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
 import Log from "./Log";
+
 import "../scss/layout.scss";
 // import LoggIn from "../Login/LoggIn";
 // import SignIn from "../Login/SignIn";
@@ -78,6 +79,7 @@ const Layout = () => {
       dose: item.dawka,
       form: item.postac,
       producer: item.podmOdpow,
+      howMany: 1,
       // prize: price,
     };
     console.log(newBasket);
@@ -100,14 +102,51 @@ const Layout = () => {
   };
   console.log(pay);
 
-  // const handleQuantityAdd = (price) => {
-  //   setQuantity((prev) => prev + 1);
-  //   setPay((prev) => prev + price);
-  // };
-  // const handleQuantitySubstract = (price) => {
-  //   setQuantity((prev) => prev - 1);
-  //   setPay((prev) => prev - price);
-  // };
+  const handleQuantityAdd = (price, item, event) => {
+    setQuantity((prev) => prev + 1);
+    const data = {
+      howMany: quantity,
+    };
+    fetch(`${API}/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(quantity);
+    setPay((prev) => prev + price);
+  };
+  const handleQuantitySubstract = (price, item, event) => {
+    setQuantity((prev) => prev - 1);
+    const data = {
+      howMany: quantity,
+    };
+    fetch(`${API}/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(quantity);
+
+    setPay((prev) => prev - price);
+  };
   // useEffect(() => {
 
   //   setPay((prev) => prev + price);
@@ -162,8 +201,8 @@ const Layout = () => {
                 pay={pay}
                 quantity={quantity}
                 // price={price}
-                // changeQuantityAdd={handleQuantityAdd}
-                // changeQuantitySubstract={handleQuantitySubstract}
+                changeQuantityAdd={handleQuantityAdd}
+                changeQuantitySubstract={handleQuantitySubstract}
               />
             )}
           />
