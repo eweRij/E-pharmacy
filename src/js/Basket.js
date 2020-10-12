@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
 import ItemToBuy from "./ItemToBuy";
+import OnBuy from "./OnBuy";
 
 const Basket = ({
   itemsToShow,
@@ -43,7 +44,10 @@ const Basket = ({
   //   e.preventDefault();
   //   setQuantity(e.target.value);
   // };
-
+  const [visibility, setVisibility] = useState(false);
+  const handleVisibility = () => {
+    setVisibility((prev) => !prev);
+  };
   if (itemsToShow.length > 0) {
     //jak wyczyscic ustawienia po ponownym wyrenderowaniu?
 
@@ -54,7 +58,7 @@ const Basket = ({
         onBuy={onBuy}
       ></SearchedItems>
     );
-  } else if (basketItems) {
+  } else if (basketItems && visibility === false) {
     return (
       <>
         <h1>Twój koszyk:</h1>
@@ -78,12 +82,12 @@ const Basket = ({
             })}
           </ul>
           <div>Kwota do zapłaty :{pay} zł</div>
-          <button>
-            <Link to="onBuy">Kupuję!</Link>
-          </button>
+          <button onClick={handleVisibility}>Kupuję</button>
         </div>
       </>
     );
+  } else if (visibility) {
+    return <OnBuy />;
   } else {
     return <h1>Trwa ładowanie strony...</h1>;
   }

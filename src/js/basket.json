@@ -1,28 +1,5 @@
 {
   "basket": [
-    {
-      "name": "Mozarin Swift",
-      "dose": "20 mg",
-      "form": "tabletki ulegające rozpadowi w jamie ustnej",
-      "producer": "Adamed Pharma S.A.",
-      "howMany": 2,
-      "id": 1
-    },
-    {
-      "name": "Kalipoz prolongatum",
-      "dose": "391 mg jonów potasu",
-      "form": "tabletki o przedłużonym uwalnianiu",
-      "producer": "GlaxoSmithKline Pharmaceuticals S.A.",
-      "howMany": 1,
-      "id": 2
-    },
-    {
-      "name": "Pyralgina Gorączka",
-      "dose": "500 mg/sasz.",
-      "form": "granulat do sporządzania roztworu doustnego",
-      "producer": "Zakłady Farmaceutyczne POLPHARMA S.A.",
-      "howMany": 2,
-      "id": 3
-    }
+
   ]
 }
