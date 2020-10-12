@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+// import { useState } from "react";
+// import ReactDOM from "react-dom";
+// import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
 import ItemToBuy from "./ItemToBuy";
 import OnBuy from "./OnBuy";
+import Log from "./Log";
+import { UserContext } from "../providers/UserProvider";
 
 const Basket = ({
   itemsToShow,
@@ -21,6 +23,7 @@ const Basket = ({
   const API = "http://localhost:8000/basket";
   const [basketItems, setBasketItems] = useState(false);
   // const [pay, setPay] = useState(0);
+  const user = useContext(UserContext);
   let price = 15;
   console.log(API);
 
@@ -58,7 +61,7 @@ const Basket = ({
         onBuy={onBuy}
       ></SearchedItems>
     );
-  } else if (basketItems && visibility === false) {
+  } else if (basketItems && visibility === false && user) {
     return (
       <>
         <h1>Twój koszyk:</h1>
@@ -86,10 +89,12 @@ const Basket = ({
         </div>
       </>
     );
-  } else if (visibility) {
+  } else if (visibility && user) {
     return <OnBuy />;
+  } else if (user === null) {
+    return <Log />;
   } else {
-    return <h1>Trwa ładowanie strony...</h1>;
+    return <h1>Trwa ładowanie strony..</h1>;
   }
 };
 
