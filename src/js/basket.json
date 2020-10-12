@@ -1,60 +1,28 @@
 {
   "basket": [
     {
-      "name": "Depakine Chrono 500",
-      "dose": "333 mg + 145 mg",
-      "form": "tabletki powlekane o przedłużonym uwalnianiu",
-      "producer": "Delfarma Sp. z o.o.",
-      "howMany": 1,
+      "name": "Mozarin Swift",
+      "dose": "20 mg",
+      "form": "tabletki ulegające rozpadowi w jamie ustnej",
+      "producer": "Adamed Pharma S.A.",
+      "howMany": 2,
       "id": 1
     },
     {
-      "name": "Depakine Chronosphere 100",
-      "dose": "(66,66 mg + 29,03 mg)/sasz.",
-      "form": "granulat o przedłużonym uwalnianiu",
-      "producer": "Sanofi-Aventis Sp. z o.o.",
+      "name": "Kalipoz prolongatum",
+      "dose": "391 mg jonów potasu",
+      "form": "tabletki o przedłużonym uwalnianiu",
+      "producer": "GlaxoSmithKline Pharmaceuticals S.A.",
       "howMany": 1,
       "id": 2
     },
     {
-      "name": "Depakine Chronosphere 250",
-      "dose": "(166,76 mg + 72,61 mg)/sasz.",
-      "form": "granulat o przedłużonym uwalnianiu",
-      "producer": "Sanofi-Aventis Sp. z o.o.",
-      "howMany": 1,
+      "name": "Pyralgina Gorączka",
+      "dose": "500 mg/sasz.",
+      "form": "granulat do sporządzania roztworu doustnego",
+      "producer": "Zakłady Farmaceutyczne POLPHARMA S.A.",
+      "howMany": 2,
       "id": 3
-    },
-    {
-      "name": "Acatar Acti-Tabs",
-      "dose": "60 mg + 2,5 mg",
-      "form": "tabletki",
-      "producer": "US Pharmacia Sp. z o.o.",
-      "howMany": 1,
-      "id": 4
-    },
-    {
-      "name": "Acatar Allergy",
-      "dose": "1 mg/ml",
-      "form": "aerozol do nosa, roztwór",
-      "producer": "US Pharmacia Sp. z o.o.",
-      "howMany": 1,
-      "id": 5
-    },
-    {
-      "name": "Acatar Zatoki Tabs",
-      "dose": "200 mg + 6,1 mg",
-      "form": "tabletki drażowane",
-      "producer": "US Pharmacia Sp. z o.o.",
-      "howMany": 1,
-      "id": 6
-    },
-    {
-      "name": "Acatar Zatoki",
-      "dose": "200 mg + 30 mg",
-      "form": "tabletki powlekane",
-      "producer": "US Pharmacia Sp. z o.o.",
-      "howMany": 1,
-      "id": 7
     }
   ]
 }

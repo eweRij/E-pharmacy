@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 
 const ItemToBuy = ({
@@ -12,6 +12,9 @@ const ItemToBuy = ({
   remove,
 }) => {
   const API = "http://localhost:8000/basket";
+  const spanQuantity = useRef(null);
+  const currentButtonAdd = useRef(null);
+  const currentButtonSubstract = useRef(null);
   // const handleRemove = (index, pay) => {
   //   fetch(`${API}/${index}`, {
   //     method: "DELETE",
@@ -38,22 +41,24 @@ const ItemToBuy = ({
     name="quantity"
   ></input> */}
       <button
+        ref={currentButtonSubstract}
         onClick={(event) => {
-          changeQuantitySubstract(price, itemToBuy, event);
+          changeQuantitySubstract(price, itemToBuy, spanQuantity, event);
         }}
       >
         -
       </button>
-      <span>{itemToBuy.howMany}</span>
+      <span ref={spanQuantity}>{itemToBuy.howMany}</span>
       <button
         onClick={(event) => {
-          changeQuantityAdd(price, itemToBuy, event);
+          changeQuantityAdd(price, itemToBuy, spanQuantity, event);
           console.log(itemToBuy.howMany);
         }}
       >
         +
       </button>
       <button
+        ref={currentButtonAdd}
         onClick={() => {
           remove(itemToBuy);
         }}

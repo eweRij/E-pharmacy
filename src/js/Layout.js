@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import Navigation from "./Navigation";
 import Main from "./Main";
@@ -57,7 +57,7 @@ const Layout = () => {
   //basket
   // const [basket, setBasket] = useState([]);
   // const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const [pay, setPay] = useState(0);
   const [inBasket, setInBasket] = useState(0);
   // const [price, setPrice] = useState(0);
@@ -107,53 +107,60 @@ const Layout = () => {
       .catch((error) => {
         console.log(error);
       });
+    setQuantity((prev) => prev + 1);
     setPay((prev) => prev + price);
   };
   console.log(pay);
 
-  const handleQuantityAdd = (price, item, event) => {
-    setQuantity((prev) => prev + 1);
-    const data = {
-      howMany: quantity,
-    };
-    fetch(`${API}/${item.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log(quantity);
-    setPay((prev) => prev + price);
-  };
-  const handleQuantitySubstract = (price, item, event) => {
-    setQuantity((prev) => prev - 1);
-    const data = {
-      howMany: quantity,
-    };
-    fetch(`${API}/${item.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log(quantity);
+  // const spanQuantity = useRef(null);
+  // const currentButtonAdd = useRef(null);
+  // const currentButtonSubstract = useRef(null);
 
+  const handleQuantityAdd = (price, item, ref, event) => {
+    let counter = parseFloat(ref.current.innerText) + 1;
+    const data = {
+      howMany: counter,
+    };
+    fetch(`${API}/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(counter);
+    setPay((prev) => prev + price);
+    setQuantity((prev) => prev + 1);
+  };
+  const handleQuantitySubstract = (price, item, ref, event) => {
+    let counter = parseFloat(ref.current.innerText) - 1;
+
+    const data = {
+      howMany: counter,
+    };
+    fetch(`${API}/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(quantity);
+    setQuantity((prev) => prev - 1);
     setPay((prev) => prev - price);
   };
   // useEffect(() => {
@@ -191,6 +198,7 @@ const Layout = () => {
           trigger={menu}
           showList={handleFilteredDrugs}
           inBasket={inBasket}
+          howMany={quantity}
         />
         <Switch>
           <Route

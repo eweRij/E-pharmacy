@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
-const Navigation = ({ onClick, trigger, showList, inBasket }) => {
+const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
   // działa przenoszenie
   const [drugs, setDrugs] = useState([]);
   const [searchItem, setSearchItem] = useState("");
@@ -57,7 +57,7 @@ const Navigation = ({ onClick, trigger, showList, inBasket }) => {
                 className="fas fa-shopping-basket"
               ></i>
             </Link>
-            <span className="badge">{inBasket.length}</span>
+            <span className="badge">{howMany}</span>
           </div>
           <nav className={trigger ? "mobile-section opened" : "mobile-section"}>
             <button onClick={onClick} id="menu-trigger">
