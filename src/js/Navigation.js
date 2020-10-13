@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import { UserContext } from "../providers/UserProvider";
 
 const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
   // działa przenoszenie
+  const user = useContext(UserContext);
   const [drugs, setDrugs] = useState([]);
   const [searchItem, setSearchItem] = useState("");
   // const [filteredDrugs, setFilteredDrugs] = useState("");
@@ -50,6 +52,7 @@ const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
               ></input>
               <input id="btn-search" type="submit" value="Szukaj"></input>
             </form>
+            <span>{user && "Witaj Ewelina!"}</span>
             <Link className="basket" to="./basket">
               <i
                 onClick={handleClearHistory}

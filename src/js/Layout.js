@@ -250,7 +250,20 @@ const Layout = () => {
               />
             )}
           />
-          <Route path="/prescriptions" component={Prescriptions} />
+          <Route
+            exact
+            path="/prescriptions"
+            render={(props) => (
+              <Prescriptions
+                {...props}
+                itemsToShow={filteredDrugs}
+                imageToShow={searchedItem}
+                onBuy={handleBasket}
+
+                // imageToShow={searchedItem}
+              />
+            )}
+          />
           {/* <Route path="/drugs" component={Drugs} /> */}
           <Route
             exact
