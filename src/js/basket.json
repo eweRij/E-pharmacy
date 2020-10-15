@@ -23,6 +23,38 @@
       "producer": "US Pharmacia Sp. z o.o.",
       "howMany": 3,
       "id": 3
+    },
+    {
+      "name": "Acatar Acti-Tabs",
+      "dose": "60 mg + 2,5 mg",
+      "form": "tabletki",
+      "producer": "US Pharmacia Sp. z o.o.",
+      "howMany": 1,
+      "id": 4
+    },
+    {
+      "name": "Acatar Acti Form",
+      "dose": "12,2 mg",
+      "form": "kapsułki twarde",
+      "producer": "US Pharmacia Sp. z o.o.",
+      "howMany": 1,
+      "id": 5
+    },
+    {
+      "name": "Acatar Acti-Tabs",
+      "dose": "60 mg + 2,5 mg",
+      "form": "tabletki",
+      "producer": "US Pharmacia Sp. z o.o.",
+      "howMany": 1,
+      "id": 6
+    },
+    {
+      "name": "Acatar Allergy",
+      "dose": "1 mg/ml",
+      "form": "aerozol do nosa, roztwór",
+      "producer": "US Pharmacia Sp. z o.o.",
+      "howMany": 1,
+      "id": 7
     }
   ]
 }

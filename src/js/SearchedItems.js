@@ -13,25 +13,16 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
       "AIzaSyBSSvTFqPxkcI5mz9suctBy5ab3h583C4s"
     ); //moje dane do google search
     const options = { page: 1 };
-    console.log(imageToShow);
+
     client
       .search(`${imageToShow}`, options)
       .then((images) => {
-        /*
-        [{
-            'url': item.link,
-            'thumbnail':item.image.thumbnailLink,
-            'snippet':item.title,
-            'context': item.image.contextLink
-        }]
-         */
         setImage(images);
       })
       .catch((error) => console.log(error));
   }, [imageToShow]);
 
   if (onList && image && typeof onBuy === "function") {
-    console.log(image[5].url);
     return (
       <>
         <h2 className="container" style={{ textAlign: "center" }}>
@@ -44,7 +35,9 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
                 <div className="item">
                   <Image imageUrl={image[8].url} />
                   <div className="item__name">
-                    {item.nazwa}
+                    <h5 style={{ fontWeight: "600", color: "#d9042b" }}>
+                      {item.nazwa}
+                    </h5>
                     <span>({item.nazPowStos}),</span> {item.dawka},{item.postac}
                   </div>
                   <div
@@ -54,9 +47,19 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
                     {item.podmOdpow}
                   </div>
                   <div className="item__manager">
-                    <div className="item__manager__price">{price} zł</div>
+                    <div className="item__manager__price">
+                      <h5
+                        style={{
+                          color: "#d9042b",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {price} zł
+                      </h5>
+                    </div>
                     <div className="item__manager__buy">
                       <button
+                        className="btn-buy"
                         onClick={(event) => {
                           onBuy(event, item, price);
                         }}
@@ -73,12 +76,7 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
       </>
     );
   } else {
-    return (
-      <h1>
-        Przykro mi, ale nie znależliśmy to, czego szukasz. Spróbuj ponownie lub
-        skontaktuj się z nami, postaramy się pomóc!
-      </h1>
-    );
+    return <h1>Trwa ładownie...</h1>;
   }
 };
 

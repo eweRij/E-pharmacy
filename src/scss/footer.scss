@@ -35,7 +35,11 @@ footer {
     section {
       width: 100%;
       margin-bottom: 2rem;
+      .footerVisibility {
+        width : 50%;
+      }
     }
+    
   }
 }
 @media screen and (max-width: 350px) {
