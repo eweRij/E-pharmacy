@@ -76,11 +76,11 @@ const SignIn = () => {
         </button>
         <p className="">
           Nie masz jeszcze konta?{" "}
-          <Link to="/log/signUp" className="">
+          <Link to="/signUp" className="">
             Zarejestruj się tutaj
           </Link>{" "}
           <br />{" "}
-          <Link to="/log/passwordReset" className="">
+          <Link to="/passwordReset" className="">
             Zapomniałeś hasła?
           </Link>
         </p>

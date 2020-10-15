@@ -35,11 +35,12 @@ const Footer = () => {
           </div>
           <div className="footerVisibility">
             <h2>Contact Us</h2>
-            <i className="fab fa-twitter"></i>
-            <i className="fab fa-facebook"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-dribble"></i>
-            <i className="fab fa-pinterest"></i>
+            <div className="footer__media">
+              <i className="fab fa-twitter"></i>
+              <i className="fab fa-facebook"></i>
+              <i className="fab fa-instagram"></i>
+              <i className="fab fa-pinterest"></i>
+            </div>
             <p>1234 Fictional Road Nashville, TN 00000 (800) 555-0000</p>
           </div>
         </section>

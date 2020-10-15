@@ -90,7 +90,7 @@ const Basket = ({
       </>
     );
   } else if (visibility && user) {
-    return <OnBuy />;
+    return <OnBuy items={basketItems} />;
   } else if (user === null) {
     return <Log />;
   } else {

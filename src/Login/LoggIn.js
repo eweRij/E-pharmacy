@@ -12,15 +12,9 @@ function LoggIn() {
     <ProfilePage />
   ) : (
     <>
-      {/* <Link to="/log/signIn">Zaloguj się</Link> */}
-      {/* <Link to="/log/signUp">Zarejestruj się!</Link>
-      <Link to="/log/passwordReset">Zresetuj hasło</Link> */}
-      <Router>
-        <SignUp path="/log/signUp" />
-        <SignIn path="/log/signIn" />
-        <ProfilePage path="/log/profilePage" />
-        <PasswordReset path="/log/passwordReset" />
-      </Router>
+      <Link to="/log/signIn">Zaloguj się</Link>
+      <Link to="/log/signUp">Zarejestruj się!</Link>
+      <Link to="/log/passwordReset">Zresetuj hasło</Link>
     </>
   );
 }

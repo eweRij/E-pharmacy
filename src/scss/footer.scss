@@ -7,14 +7,23 @@ footer {
     display: flex;
     flex-direction: row;
     margin-top: 1.4rem;
-    div {
+    div.pr {
       width: 50%;
+      h2{
+        color: #012c52;
+      }
     }
   }
 }
 .footerVisibility {
-  i {
-    margin-right: 1 rem;
+  .footer__media {
+    display: flex;
+    justify-content:center;
+    align-content: center;
+    i{
+      padding: 1rem;
+    }
+
   }
 }
 @media screen and (min-width: 350px) and (max-width: 690px) {

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
-const OnBuy = () => {
+const OnBuy = ({ items }) => {
   const API = "http://localhost:8000/basket";
 
   useEffect(() => {
-    fetch(`${API}`, {
-      method: "DELETE",
-    })
+    // fetch(`${API}/${items.map((el) => el.id).join(",")}`, {
+    //   method: "DELETE",
+    // })
+    Promise.all(
+      items.map((el) => {
+        return fetch(`${API}/${el.id}`, { method: "DELETE" });
+      }) //rozkminic dalej
+    )
       .then((response) => {
         console.log(response.ok);
       })
