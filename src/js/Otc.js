@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
 
 const Otc = ({ itemsToShow }) => {
@@ -9,13 +7,12 @@ const Otc = ({ itemsToShow }) => {
   useEffect(() => {
     fetch(`${API}`)
       .then((response) => response.json())
-      .then(
-        (data) =>
-          setOtcDrugs(
-            data.filter((item) => {
-              return item.katDostOpak === "OTC"; //fejk, to by było dopiero ;P
-            })
-          ) //jak w RPZ
+      .then((data) =>
+        setOtcDrugs(
+          data.filter((item) => {
+            return item.katDostOpak === "OTC";
+          })
+        )
       )
       .catch((err) => console.log(err));
   }, []);
@@ -43,26 +40,6 @@ const Otc = ({ itemsToShow }) => {
   } else {
     return <h1>Trwa ładowanie strony...</h1>;
   }
-
-  // if (otcDrugs) {
-  //   return (
-  //     <>
-  //       <h1>Preparaty bez recepty dostępne w naszej Aptece:</h1>
-  //       <ul>
-  //         {otcDrugs.map((item, index) => {
-  //           return (
-  //             <li key={index}>
-  //               {item.nazwa} ({item.nazPowStos}), {item.dawka}, {item.postac},{" "}
-  //               {item.podmOdpow}
-  //             </li>
-  //           );
-  //         })}
-  //       </ul>
-  //     </>
-  //   );
-  // } else {
-  //   return <h1>Trwa ładowanie strony...</h1>;
-  // }
 };
 
 export default Otc;

@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import ReactDOM from "react-dom";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
 import Log from "./Log";
 import { UserContext } from "../providers/UserProvider";
@@ -9,7 +8,6 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
   const user = useContext(UserContext);
   const [prescription, setPrescription] = useState({
     pesel: "",
-
     info: "",
   });
   const handlePrescription = (e) => {
@@ -33,7 +31,6 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
       .then((res) => {
         alert("Wiadomość została wysłana");
       })
-      // Handle errors here however you like, or use a React error boundary
       .catch((err) =>
         alert(
           "Coś poszło nie tak! Spróbuj jeszcze raz lub skontakruj się z nami",
@@ -53,8 +50,6 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
     });
   };
   if (itemsToShow.length > 0) {
-    //jak wyczyscic ustawienia po ponownym wyrenderowaniu?
-
     return (
       <SearchedItems
         onList={itemsToShow}

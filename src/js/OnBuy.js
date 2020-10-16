@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 const OnBuy = ({ items }) => {
   const API = "http://localhost:8000/basket";
 
   useEffect(() => {
-    // fetch(`${API}/${items.map((el) => el.id).join(",")}`, {
-    //   method: "DELETE",
-    // })
     Promise.all(
+      //czści koszyk po otwarciu
       items.map((el) => {
         return fetch(`${API}/${el.id}`, { method: "DELETE" });
-      }) //rozkminic dalej
+      })
     )
       .then((response) => {
         console.log(response.ok);
@@ -18,7 +16,6 @@ const OnBuy = ({ items }) => {
       .catch((error) => {
         console.log(error);
       });
-    console.log("kasuję");
   }, []);
   return (
     <>

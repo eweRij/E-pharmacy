@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 
-const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
+const Navigation = ({ onClick, trigger, showList, howMany }) => {
   // działa przenoszenie
   const user = useContext(UserContext);
   const [drugs, setDrugs] = useState([]);
