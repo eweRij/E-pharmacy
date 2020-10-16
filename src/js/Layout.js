@@ -137,6 +137,9 @@ const Layout = () => {
       });
     setPay((prev) => prev - 15 * item.howMany);
   };
+  const zeroQuantityBadge = () => {
+    setQuantity(0);
+  };
 
   const NotFound = () => {
     return <h1>Coś poszło nie tak, nie odnazleżliśmy strony:(</h1>;
@@ -179,6 +182,7 @@ const Layout = () => {
                 changeQuantityAdd={handleQuantityAdd}
                 changeQuantitySubstract={handleQuantitySubstract}
                 remove={handleRemove}
+                zeroHandle={zeroQuantityBadge}
               />
             )}
           />
@@ -217,10 +221,10 @@ const Layout = () => {
             )}
           />
           <Route path="/log" component={Log} />
-          <Route path="/profilePage" component={ProfilePage} />
-          <Route path="/signUp" component={SignUp} />
-          <Route path="/passwordReset" component={PasswordReset} />
-          <Route path="/onBuy" component={onBuy} />
+          {/* <Route path="/log/profilePage" component={ProfilePage} />
+          <Route path="/log/signUp" component={SignUp} />
+          <Route path="/log/passwordReset" component={PasswordReset} />
+          <Route path="/log/onBuy" component={onBuy} /> */}
           <Route component={NotFound} />
         </Switch>
         <Footer />

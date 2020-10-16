@@ -12,6 +12,7 @@ const ItemToBuy = ({
   remove,
 }) => {
   const API = "http://localhost:8000/basket";
+  console.log(API.length);
   const spanQuantity = useRef(null);
   const currentButtonAdd = useRef(null);
   const currentButtonSubstract = useRef(null);

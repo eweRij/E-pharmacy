@@ -107,7 +107,7 @@ const SignUp = () => {
         </button>
         <p className="">
           Masz już konto?{" "}
-          <Link to="/log" className="">
+          <Link to="/log/signIn" className="">
             Zaloguj się tutaj
           </Link>{" "}
         </p>

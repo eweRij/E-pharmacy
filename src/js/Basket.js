@@ -15,10 +15,11 @@ const Basket = ({
   // showBasket,
   // price,
   pay,
-  // quantity,
+  quantity,
   remove,
   changeQuantityAdd,
   changeQuantitySubstract,
+  zeroHandle,
 }) => {
   const API = "http://localhost:8000/basket";
   const [basketItems, setBasketItems] = useState(false);
@@ -75,7 +76,7 @@ const Basket = ({
                     index={index}
                     price={price}
                     // pay={pay}
-                    // quantity={quantity}
+                    quantity={quantity}
                     changeQuantityAdd={changeQuantityAdd}
                     changeQuantitySubstract={changeQuantitySubstract}
                     remove={remove}
@@ -90,7 +91,7 @@ const Basket = ({
       </>
     );
   } else if (visibility && user) {
-    return <OnBuy items={basketItems} />;
+    return <OnBuy items={basketItems} zeroHandle={zeroHandle} />;
   } else if (user === null) {
     return <Log />;
   } else {
