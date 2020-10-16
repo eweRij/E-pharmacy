@@ -32,7 +32,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="footerVisibility">
-            <h2>Contact Us</h2>
+            <h2 style={{ color: "#012c52" }}>Contact Us</h2>
             <div className="footer__media">
               <i className="fab fa-twitter"></i>
               <i className="fab fa-facebook"></i>
