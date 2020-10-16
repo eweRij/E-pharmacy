@@ -53,7 +53,9 @@ const Navigation = ({ onClick, trigger, showList, howMany }) => {
               <input id="btn-search" type="submit" value="Szukaj"></input>
             </form>
             <span className="user-name">
-              <h3>{user && `Witaj ${user.displayName}!`}</h3>
+              <h3 style={{ minWidth: "20rem" }}>
+                {user && `Witaj ${user.displayName}!`}
+              </h3>
             </span>
             <Link className="basket" to="./basket">
               <i

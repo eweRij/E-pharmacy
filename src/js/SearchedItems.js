@@ -3,7 +3,7 @@ import Image from "./Image";
 const imageSearch = require("image-search-google");
 
 const SearchedItems = ({ onList, imageToShow, onBuy }) => {
-  console.log(onList);
+  console.log(onList.length);
   const price = 15;
   const [image, setImage] = useState(false);
 
@@ -33,7 +33,7 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
             return (
               <li key={index}>
                 <div className="item">
-                  <Image imageUrl={image[8].url} />
+                  <Image imageUrl={image[1].url} />
                   <div className="item__name">
                     <h5 style={{ fontWeight: "600", color: "#d9042b" }}>
                       {item.nazwa}
@@ -74,6 +74,12 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
           })}
         </ul>
       </>
+    );
+  } else if (onList.length === 0) {
+    return (
+      <div className="container">
+        <h2>Przykro nam, ale nie znaleźliśmy tego,czego szukasz.</h2>
+      </div>
     );
   } else {
     return <h1>Trwa ładownie...</h1>;

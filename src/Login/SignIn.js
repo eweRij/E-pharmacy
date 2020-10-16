@@ -27,37 +27,41 @@ const SignIn = () => {
   };
 
   return (
-    <div className="">
+    <div className="signIn__container">
       <h1 className="">Zaloguj się</h1>
-      <div className="">
+      <div className="log">
         {error !== null && <div className="">{error}</div>}
-        <form className="">
-          <label htmlFor="userEmail" className="">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="my-1 p-1 w-full"
-            name="userEmail"
-            value={email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Hasło:
-          </label>
-          <input
-            type="password"
-            className="mt-1 mb-3 p-1 w-full"
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={(event) => onChangeHandler(event)}
-          />
+        <form className="log-form">
+          <div className="email">
+            <label htmlFor="userEmail" className="log-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              className="log-input"
+              name="userEmail"
+              value={email}
+              placeholder="np. coderslab@gmail.com"
+              id="userEmail"
+              onChange={(event) => onChangeHandler(event)}
+            />
+          </div>
+          <div className="password">
+            <label htmlFor="userPassword" className="log-label">
+              Hasło:
+            </label>
+            <input
+              type="password"
+              className="log-input"
+              name="userPassword"
+              value={password}
+              placeholder="Twoje hasło"
+              id="userPassword"
+              onChange={(event) => onChangeHandler(event)}
+            />
+          </div>
           <button
-            className=""
+            className="log-btn"
             onClick={(event) => {
               signInWithEmailAndPasswordHandler(event, email, password);
             }}
@@ -67,14 +71,14 @@ const SignIn = () => {
         </form>
         <p className="">lub</p>
         <button
-          className=""
+          className="log-btn"
           onClick={() => {
             signInWithGoogle();
           }}
         >
           Zaloguj się z Google
         </button>
-        <p className="">
+        {/* <p className="">
           Nie masz jeszcze konta?{" "}
           <Link to="/log/signUp" className="">
             Zarejestruj się tutaj
@@ -83,7 +87,7 @@ const SignIn = () => {
           <Link to="/log/passwordReset" className="">
             Zapomniałeś hasła?
           </Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

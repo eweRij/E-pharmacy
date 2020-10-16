@@ -89,11 +89,14 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
   } else if (user === null) {
     return (
       <>
-        <h1>
-          Musisz być zalogowanym użytkownikiem, żeby wysłać do nas swoje
-          e-recepty.
-        </h1>
-        <Log />
+        <div className="container prescription__container">
+          {" "}
+          <h1>
+            Musisz być zalogowanym użytkownikiem, żeby wysłać do nas swoje
+            e-recepty.
+          </h1>
+          <Log className="log__container" />
+        </div>
       </>
     );
   } else {
