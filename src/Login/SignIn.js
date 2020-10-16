@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
 import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
 
@@ -28,9 +27,9 @@ const SignIn = () => {
 
   return (
     <div className="signIn__container">
-      <h1 className="">Zaloguj się</h1>
+      <h1>Zaloguj się</h1>
       <div className="log">
-        {error !== null && <div className="">{error}</div>}
+        {error !== null && <div>{error}</div>}
         <form className="log-form">
           <div className="email">
             <label htmlFor="userEmail" className="log-label">
@@ -78,19 +77,10 @@ const SignIn = () => {
         >
           Zaloguj się z Google
         </button>
-        {/* <p className="">
-          Nie masz jeszcze konta?{" "}
-          <Link to="/log/signUp" className="">
-            Zarejestruj się tutaj
-          </Link>{" "}
-          <br />{" "}
-          <Link to="/log/passwordReset" className="">
-            Zapomniałeś hasła?
-          </Link>
-        </p> */}
       </div>
     </div>
   );
 };
 
 export default SignIn;
+//okej

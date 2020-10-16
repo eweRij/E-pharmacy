@@ -66,8 +66,12 @@
     font-size: 1rem;
     justify-self: center;
     margin-bottom: 1rem;
+    outline: none;
     &:hover {
         box-shadow: #07ACE629 5px 10px 14px;
+        opacity: .7;
+    }
+    &:focus {
         opacity: .7;
     }
 }

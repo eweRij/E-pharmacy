@@ -34,19 +34,28 @@ const PasswordReset = () => {
     <div>
       <h1>Zresetuj swoje hasło</h1>
       <div>
-        <form action="">
+        <form className="log-form">
           {emailHasBeenSent && <div>An email has been sent to you!</div>}
           {error !== null && <div>{error}</div>}
-          <label htmlFor="userEmail">Email:</label>
-          <input
-            type="email"
-            name="userEmail"
-            id="userEmail"
-            value={email}
-            placeholder="Input your email"
-            onChange={onChangeHandler}
-          />
+          <div className="email">
+            {" "}
+            <label className="log-label" htmlFor="userEmail">
+              Email:
+            </label>
+            <input
+              className="log-input"
+              type="email"
+              name="userEmail"
+              id="userEmail"
+              value={email}
+              placeholder="Input your email"
+              onChange={onChangeHandler}
+            />
+          </div>
+
           <button
+            style={{ width: "25vw" }}
+            className="log-btn"
             onClick={(event) => {
               sendResetEmail(event);
             }}
@@ -55,10 +64,7 @@ const PasswordReset = () => {
           </button>
         </form>
 
-        <Link
-          to="/log/signIn"
-          className="my-2 text-blue-700 hover:text-blue-800 text-center block"
-        >
+        <Link to="/log/signIn" className="log_links">
           &larr; powrót do strony z logowaniem
         </Link>
       </div>

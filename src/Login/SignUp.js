@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "@reach/router";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
 
@@ -21,7 +21,7 @@ const SignUp = () => {
       );
       generateUserDocument(user, { displayName });
     } catch (error) {
-      setError("Error Signing up with email and password");
+      setError("Coś poszło nie tak! Spróbuj jeszcze raz...");
     }
 
     setEmail("");
@@ -42,49 +42,49 @@ const SignUp = () => {
   };
 
   return (
-    <div className="">
-      <h1 className="">Zarejestruj się</h1>
-      <div className="">
+    <div>
+      <h1>Zarejestruj się</h1>
+      <div className="log">
         {error !== null && <div className="">{error}</div>}
-        <form className="">
-          <label htmlFor="displayName" className="">
+        <form className="log-form">
+          <label htmlFor="displayName" className="log-label">
             Twoje imię:
           </label>
           <input
             type="text"
-            className=""
+            className="log-input"
             name="displayName"
             value={displayName}
-            placeholder="E.g: Faruq"
+            placeholder="np. Dżesika"
             id="displayName"
             onChange={(event) => onChangeHandler(event)}
           />
-          <label htmlFor="userEmail" className="block">
+          <label htmlFor="userEmail" className="log-label">
             Email:
           </label>
           <input
             type="email"
-            className=""
+            className="log-input"
             name="userEmail"
             value={email}
-            placeholder="E.g: faruq123@gmail.com"
+            placeholder="n.pk coderslab@gmail.com"
             id="userEmail"
             onChange={(event) => onChangeHandler(event)}
           />
-          <label htmlFor="userPassword" className="block">
+          <label htmlFor="userPassword" className="log-label">
             Hasło:
           </label>
           <input
             type="password"
-            className=""
+            className="log-input"
             name="userPassword"
             value={password}
-            placeholder="Your Password"
+            placeholder="Twoje hasło"
             id="userPassword"
             onChange={(event) => onChangeHandler(event)}
           />
           <button
-            className=""
+            className="log-btn"
             onClick={(event) => {
               createUserWithEmailAndPasswordHandler(event, email, password);
             }}
@@ -92,7 +92,7 @@ const SignUp = () => {
             Zarejestruj się
           </button>
         </form>
-        <p className="">lub</p>
+        <p>lub</p>
         <button
           onClick={() => {
             try {
@@ -101,16 +101,16 @@ const SignUp = () => {
               console.error("Error signing in with Google", error);
             }
           }}
-          className=""
+          className="log-btn"
         >
           Zaloguj się z Google
         </button>
-        <p className="">
+        {/* <p className="">
           Masz już konto?{" "}
           <Link to="/log/signIn" className="">
             Zaloguj się tutaj
           </Link>{" "}
-        </p>
+        </p> */}
       </div>
     </div>
   );
