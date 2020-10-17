@@ -55,7 +55,7 @@ const PasswordReset = () => {
 
           <button
             style={{ width: "25vw" }}
-            className="log-btn"
+            className="log btn"
             onClick={(event) => {
               sendResetEmail(event);
             }}

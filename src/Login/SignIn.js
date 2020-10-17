@@ -28,7 +28,7 @@ const SignIn = () => {
   return (
     <div className="signIn__container">
       <h1>Zaloguj się</h1>
-      <div className="log">
+      <div className="loggin">
         {error !== null && <div>{error}</div>}
         <form className="log-form">
           <div className="email">
@@ -60,7 +60,7 @@ const SignIn = () => {
             />
           </div>
           <button
-            className="log-btn"
+            className="log btn"
             onClick={(event) => {
               signInWithEmailAndPasswordHandler(event, email, password);
             }}
@@ -70,7 +70,7 @@ const SignIn = () => {
         </form>
         <p className="">lub</p>
         <button
-          className="log-btn"
+          className="log btn"
           onClick={() => {
             signInWithGoogle();
           }}

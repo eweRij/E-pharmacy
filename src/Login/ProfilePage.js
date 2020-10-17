@@ -27,7 +27,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <button
-        className=""
+        className="btn"
         onClick={() => {
           auth.signOut();
         }}

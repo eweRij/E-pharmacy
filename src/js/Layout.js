@@ -136,6 +136,7 @@ const Layout = () => {
         console.log(error);
       });
     setPay((prev) => prev - 15 * item.howMany);
+    setQuantity((prev) => prev - item.howMany);
   };
   const zeroQuantityBadge = () => {
     setQuantity(0);

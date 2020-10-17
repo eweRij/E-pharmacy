@@ -10,7 +10,7 @@ const OnBuy = ({ items, zeroHandle }) => {
     Promise.all(
       items.map((el) => {
         return fetch(`${API}/${el.id}`, { method: "DELETE" });
-      }) //rozkminic dalej
+      })
     )
       .then((response) => {
         console.log(response.ok);

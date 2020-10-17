@@ -29,9 +29,10 @@ const ItemToBuy = ({
   // };
   return (
     <>
-      <span>
-        {itemToBuy.name} {itemToBuy.dose} {itemToBuy.form}
-      </span>
+      <div item__name>
+        <span>{itemToBuy.name}</span>
+      </div>
+
       <span>{price} zł</span>
       {/* <input
     onChange={(e) => {
@@ -41,31 +42,39 @@ const ItemToBuy = ({
     value={quantity}
     name="quantity"
   ></input> */}
-      <button
-        ref={currentButtonSubstract}
-        onClick={(event) => {
-          changeQuantitySubstract(price, itemToBuy, spanQuantity, event);
-        }}
-      >
-        -
-      </button>
-      <span ref={spanQuantity}>{itemToBuy.howMany}</span>
-      <button
-        onClick={(event) => {
-          changeQuantityAdd(price, itemToBuy, spanQuantity, event);
-          console.log(itemToBuy.howMany);
-        }}
-      >
-        +
-      </button>
-      <button
-        ref={currentButtonAdd}
-        onClick={() => {
-          remove(itemToBuy);
-        }}
-      >
-        <i class="far fa-times-circle"></i>
-      </button>
+      <div className="item__btn">
+        <button
+          style={{ marginRight: "1rem" }}
+          className="buy-btn"
+          ref={currentButtonSubstract}
+          onClick={(event) => {
+            changeQuantitySubstract(price, itemToBuy, spanQuantity, event);
+          }}
+        >
+          -
+        </button>
+        <span ref={spanQuantity}>{itemToBuy.howMany}</span>
+        <button
+          style={{ marginLeft: "1rem" }}
+          className="buy-btn"
+          onClick={(event) => {
+            changeQuantityAdd(price, itemToBuy, spanQuantity, event);
+            console.log(itemToBuy.howMany);
+          }}
+        >
+          +
+        </button>
+        <button
+          style={{ backgroundColor: "red" }}
+          className="buy-btn"
+          ref={currentButtonAdd}
+          onClick={() => {
+            remove(itemToBuy);
+          }}
+        >
+          <i class="far fa-times-circle"></i>
+        </button>
+      </div>
     </>
   );
 };

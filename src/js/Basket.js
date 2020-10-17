@@ -65,28 +65,37 @@ const Basket = ({
   } else if (basketItems && visibility === false && user) {
     return (
       <>
-        <h1>Twój koszyk:</h1>
-        <div>
-          <ul>
-            {basketItems.map((item, index) => {
-              return (
-                <li key={index}>
-                  <ItemToBuy
-                    itemToBuy={item}
-                    index={index}
-                    price={price}
-                    // pay={pay}
-                    quantity={quantity}
-                    changeQuantityAdd={changeQuantityAdd}
-                    changeQuantitySubstract={changeQuantitySubstract}
-                    remove={remove}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-          <div>Kwota do zapłaty :{pay} zł</div>
-          <button onClick={handleVisibility}>Kupuję</button>
+        <div className="container wraper">
+          <h1>Twój koszyk:</h1>
+          <h1 style={{ margin: "5rem 0 5rem", opacity: "0.5" }}>
+            {basketItems.length === 0 && "Ten koszyk jest pusty"}
+          </h1>
+          <div className="basket-container">
+            <ul className="basket-container__items">
+              {basketItems.map((item, index) => {
+                return (
+                  <li className="basket-container__items__item" key={index}>
+                    <ItemToBuy
+                      itemToBuy={item}
+                      index={index}
+                      price={price}
+                      // pay={pay}
+                      quantity={quantity}
+                      changeQuantityAdd={changeQuantityAdd}
+                      changeQuantitySubstract={changeQuantitySubstract}
+                      remove={remove}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="basket-container__price">
+              Kwota do zapłaty :{pay} zł
+            </div>
+            <button className="btn bsk" onClick={handleVisibility}>
+              Kupuję
+            </button>
+          </div>
         </div>
       </>
     );

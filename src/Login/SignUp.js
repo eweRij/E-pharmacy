@@ -84,7 +84,7 @@ const SignUp = () => {
             onChange={(event) => onChangeHandler(event)}
           />
           <button
-            className="log-btn"
+            className="log btn"
             onClick={(event) => {
               createUserWithEmailAndPasswordHandler(event, email, password);
             }}
@@ -101,7 +101,7 @@ const SignUp = () => {
               console.error("Error signing in with Google", error);
             }
           }}
-          className="log-btn"
+          className="log btn"
         >
           Zaloguj się z Google
         </button>
