@@ -24,17 +24,23 @@ const Otc = ({ itemsToShow }) => {
   } else if (otcDrugs) {
     return (
       <>
-        <h1>Leki na receptę dostępne w naszaj Aptece:</h1>
-        <ul>
-          {otcDrugs.map((item, index) => {
-            return (
-              <li key={index}>
-                {item.nazwa} ({item.nazPowStos}), {item.dawka}, {item.postac},{" "}
-                {item.podmOdpow}
-              </li>
-            );
-          })}
-        </ul>
+        <div className="container">
+          <h1>Leki na receptę dostępne w naszaj Aptece:</h1>
+          <ul>
+            {otcDrugs.map((item, index) => {
+              return (
+                <li
+                  className="basket-container__items__item"
+                  style={{ width: "85vw" }}
+                  key={index}
+                >
+                  {item.nazwa} ({item.nazPowStos}), {item.dawka}, {item.postac},{" "}
+                  {item.podmOdpow}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </>
     );
   } else {

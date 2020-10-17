@@ -8,8 +8,8 @@ const ProfilePage = () => {
   console.log(user);
 
   return (
-    <div className="">
-      <div className="">
+    <div className="container profile">
+      <div className="profile__info">
         <div
           style={{
             background: `url(
@@ -18,16 +18,16 @@ const ProfilePage = () => {
             backgroundSize: "cover",
             height: "200px",
             width: "200px",
+            border: "2px solid black",
           }}
-          className=""
         ></div>
-        <div className="">
-          <h2 className="">{user.displayName}</h2>
-          <h3 className="">{user.email}</h3>
+        <div style={{ paddingLeft: "2rem" }}>
+          <h2>{user.displayName}</h2>
+          <h3>{user.email}</h3>
         </div>
       </div>
       <button
-        className="btn"
+        className="btn log"
         onClick={() => {
           auth.signOut();
         }}

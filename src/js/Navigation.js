@@ -77,12 +77,18 @@ const Navigation = ({ onClick, trigger, showList, howMany }) => {
                 </Link>
               </li>
               <li className="menu__element">
-                <Link onClick={handleClearHistory} className="links" to="/otc">
+                <Link
+                  disabled
+                  onClick={handleClearHistory}
+                  className="links"
+                  to="/otc"
+                >
                   Bez recepty
                 </Link>
               </li>
               <li className="menu__element">
                 <Link
+                  disabled
                   onClick={handleClearHistory}
                   className="links"
                   to="/drugs"
