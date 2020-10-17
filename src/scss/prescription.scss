@@ -1,20 +1,23 @@
-.prescription__container {
-    height :90vh;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.prescription__pesel {
+    label {
+        color : #d9042b;
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+    input {
 
-}
-h1 {
-    text-align: center;
-}
-@media screen and (max-width: 650px) {
-    .prescription__container {
-        padding-top: 0;
     }
-    .log__container {
-        padding-top: 0;
-    }
-    h1 {
-        display: none;
+}
+.prescription__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:center;
+    label {
+        color : #d9042b;
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-right: 1rem;
     }
 }

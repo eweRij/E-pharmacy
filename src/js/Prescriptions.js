@@ -60,30 +60,41 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
   } else if (user) {
     return (
       <>
-        <h1>Zrealizuj receptę</h1>
-        <h2>Wyślij nam swoje kody, a my zrobimy resztę:)</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Twój pesel:</label>
-          <input
-            onChange={handlePrescription}
-            type="number"
-            name="pesel"
-            value={prescription.pesel}
-          ></input>
-          <label>Twoje kody recept(napisane po przecinku):</label>
-          <label>
-            Kody redept oraz dodatkowe informacje dotyczące ich realizacji:
-          </label>
-          <textarea
-            onChange={handlePrescription}
-            rows="4"
-            cols="50"
-            name="info"
-            value={prescription.info}
-          ></textarea>
-          <input type="submit" value="Wyślij"></input>
-        </form>
-        <Link to="/log/profilePage">Twój profil</Link>
+        <div className="container wraper">
+          <h1>Zrealizuj receptę</h1>
+          <h2>Wyślij nam swoje kody, a my zrobimy resztę:)</h2>
+          <form id="prescription" onSubmit={handleSubmit}>
+            <div className="prescription__pesel">
+              <label>Twój pesel:</label>
+              <input
+                className="log-input"
+                style={{ backgroundColor: "white" }}
+                onChange={handlePrescription}
+                type="number"
+                name="pesel"
+                value={prescription.pesel}
+              ></input>
+            </div>
+            <div className="prescription__info">
+              <label>
+                Kody recept oraz dodatkowe informacje dotyczące ich realizacji:
+              </label>
+              <textarea
+                className="log-input"
+                onChange={handlePrescription}
+                style={{
+                  width: "30rem",
+                  height: "10rem",
+                  backgroundColor: "white",
+                }}
+                name="info"
+                value={prescription.info}
+              ></textarea>
+            </div>
+
+            <input className="btn log" type="submit" value="Wyślij"></input>
+          </form>
+        </div>
       </>
     );
   } else if (user === null) {
