@@ -48,6 +48,7 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
       reply_to: user.email,
       message: prescription.info,
     });
+    setPrescription({ pesel: "", info: "" });
   };
   if (itemsToShow.length > 0) {
     return (
@@ -100,12 +101,9 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
   } else if (user === null) {
     return (
       <>
-        <div className="container prescription__container">
+        <div className="container">
           {" "}
-          <h1>
-            Musisz być zalogowanym użytkownikiem, żeby wysłać do nas swoje
-            e-recepty.
-          </h1>
+          <h1>Musisz się zalogować!</h1>
           <Log className="log__container" />
         </div>
       </>

@@ -71,15 +71,15 @@ const Navigation = ({ onClick, trigger, showList, howMany }) => {
               <i class="fas fa-bars"></i>
             </button>
             <ul className="menu">
-              <li className="menu__element">
-                <Link onClick={handleClearHistory} className="links" to="/">
+              <li onClick={handleClearHistory} className="menu__element">
+                <Link className="links" to="/">
                   Strona główna
                 </Link>
               </li>
               <li className="menu__element">
                 <Link
-                  disabled
                   onClick={handleClearHistory}
+                  disabled
                   className="links"
                   to="/otc"
                 >
@@ -88,20 +88,16 @@ const Navigation = ({ onClick, trigger, showList, howMany }) => {
               </li>
               <li className="menu__element">
                 <Link
-                  disabled
                   onClick={handleClearHistory}
+                  disabled
                   className="links"
                   to="/drugs"
                 >
                   Na receptę
                 </Link>
               </li>
-              <li className="menu__element">
-                <Link
-                  onClick={handleClearHistory}
-                  className="links"
-                  to="/prescriptions"
-                >
+              <li onClick={handleClearHistory} className="menu__element">
+                <Link className="links" to="/prescriptions">
                   Zrealizuj receptę!
                 </Link>
               </li>

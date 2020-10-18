@@ -18,7 +18,8 @@
     align-items: center;
     justify-content: center;
     transition: 0.3s;
-    border: 2px solid #034c8c;
+    box-shadow: #00000029 0 3px 6px;
+   
 
     &:hover {
       cursor: pointer;
@@ -52,6 +53,8 @@
 .btn-buy {
   padding: 0.5rem 2.5rem;
   color: white;
+  border: none;
+  box-shadow: #00000029 0 3px 6px;
   background-color:#034c8c;
   outline: none;
   &:hover {

@@ -25,54 +25,57 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
   if (onList && image && typeof onBuy === "function") {
     return (
       <>
-        <h2 className="container" style={{ textAlign: "center" }}>
-          Wyszukano dla Ciebie:
-        </h2>
-        <ul className="item-list ">
-          {onList.map((item, index) => {
-            return (
-              <li key={index}>
-                <div className="item">
-                  <Image imageUrl={image[1].url} />
-                  <div className="item__name">
-                    <h5 style={{ fontWeight: "600", color: "#d9042b" }}>
-                      {item.nazwa}
-                    </h5>
-                    <span>({item.nazPowStos}),</span> {item.dawka},{item.postac}
-                  </div>
-                  <div
-                    className="item__producer"
-                    style={{ textAlign: "center" }}
-                  >
-                    {item.podmOdpow}
-                  </div>
-                  <div className="item__manager">
-                    <div className="item__manager__price">
-                      <h5
-                        style={{
-                          color: "#d9042b",
-                          fontWeight: "600",
-                        }}
-                      >
-                        {price} zł
+        <div className="wraper container">
+          <h2 className="container" style={{ textAlign: "center" }}>
+            Wyszukano dla Ciebie:
+          </h2>
+          <ul className="item-list ">
+            {onList.map((item, index) => {
+              return (
+                <li key={index}>
+                  <div className="item">
+                    <Image imageUrl={image[1].url} />
+                    <div className="item__name">
+                      <h5 style={{ fontWeight: "600", color: "#d9042b" }}>
+                        {item.nazwa}
                       </h5>
+                      <span>({item.nazPowStos}),</span> {item.dawka},
+                      {item.postac}
                     </div>
-                    <div className="item__manager__buy">
-                      <button
-                        className="btn-buy"
-                        onClick={(event) => {
-                          onBuy(event, item, price);
-                        }}
-                      >
-                        <i className="fas fa-shopping-cart"></i>
-                      </button>
+                    <div
+                      className="item__producer"
+                      style={{ textAlign: "center" }}
+                    >
+                      {item.podmOdpow}
+                    </div>
+                    <div className="item__manager">
+                      <div className="item__manager__price">
+                        <h5
+                          style={{
+                            color: "#d9042b",
+                            fontWeight: "600",
+                          }}
+                        >
+                          {price} zł
+                        </h5>
+                      </div>
+                      <div className="item__manager__buy">
+                        <button
+                          className="btn-buy"
+                          onClick={(event) => {
+                            onBuy(event, item, price);
+                          }}
+                        >
+                          <i className="fas fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </>
     );
   } else if (onList.length === 0) {

@@ -49,9 +49,11 @@ h3 {
   }
 }
 .wraper {
+  justify-self: center;
   height: 35rem;
   background-color: whitesmoke;
   box-shadow: #00000029 0 3px 6px;
+  padding: 2rem 1rem 2rem 1rem;
 }
 footer a {
   text-decoration: none;
