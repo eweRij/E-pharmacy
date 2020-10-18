@@ -140,6 +140,7 @@ const Layout = () => {
   };
   const zeroQuantityBadge = () => {
     setQuantity(0);
+    setPay(0);
   };
 
   const NotFound = () => {

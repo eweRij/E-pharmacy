@@ -8,7 +8,7 @@ const ProfilePage = () => {
   console.log(user);
 
   return (
-    <div className="container profile">
+    <div className="container wraper profile">
       <div className="profile__info">
         <div
           style={{

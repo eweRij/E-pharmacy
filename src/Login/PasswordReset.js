@@ -31,7 +31,7 @@ const PasswordReset = () => {
       });
   };
   return (
-    <div>
+    <div className="password-reset">
       <h1>Zresetuj swoje hasło</h1>
       <div>
         <form className="log-form">
@@ -63,10 +63,6 @@ const PasswordReset = () => {
             Wyślij link z nowym hasłem.
           </button>
         </form>
-
-        <Link to="/log/signIn" className="log_links">
-          &larr; powrót do strony z logowaniem
-        </Link>
       </div>
     </div>
   );

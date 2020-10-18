@@ -44,7 +44,7 @@ const SignUp = () => {
   return (
     <div>
       <h1>Zarejestruj się</h1>
-      <div className="log">
+      <div className="signup">
         {error !== null && <div className="">{error}</div>}
         <form className="log-form">
           <label htmlFor="displayName" className="log-label">

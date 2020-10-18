@@ -12,7 +12,7 @@ function LoggIn() {
     <ProfilePage />
   ) : (
     <>
-      <div className="log__container">
+      <div className="log__container wraper container">
         <div className="links__container">
           <Link className="log_links" to="/log/signIn">
             Zaloguj się
