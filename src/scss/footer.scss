@@ -2,19 +2,29 @@ footer {
   display: flex;
   justify-content: space-evenly;
   margin: 1rem;
+  box-shadow: #00000029 0 3px 6px;
   section {
     width: 50%;
     display: flex;
     flex-direction: row;
     margin-top: 1.4rem;
-    div {
+    div.pr {
       width: 50%;
+      h2{
+        color: #012c52;
+      }
     }
   }
 }
 .footerVisibility {
-  i {
-    margin-right: 1 rem;
+  .footer__media {
+    display: flex;
+    justify-content:center;
+    align-content: center;
+    i{
+      padding: 1rem;
+    }
+
   }
 }
 @media screen and (min-width: 350px) and (max-width: 690px) {
@@ -26,7 +36,11 @@ footer {
     section {
       width: 100%;
       margin-bottom: 2rem;
+      .footerVisibility {
+        width : 50%;
+      }
     }
+    
   }
 }
 @media screen and (max-width: 350px) {

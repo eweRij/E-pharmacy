@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Navigation from "./Navigation";
 import Main from "./Main";
 import Basket from "./Basket";
@@ -8,35 +8,12 @@ import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
 import Log from "./Log";
-import onBuy from "./OnBuy";
-
-import "../scss/layout.scss";
-// import LoggIn from "../Login/LoggIn";
-// import SignIn from "../Login/SignIn";
-// import SignUp from "../Login/SignUp";
-// import ProfilePage from "../Login/ProfilePage";
-// import PasswordReset from "../Login/PasswordReset";
 
 const Layout = () => {
   const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
-  const [menu, setMenu] = useState(false); // widocznoscr rozwijanego menu na mobilkach
+  const [menu, setMenu] = useState(false); // widocznosc rozwijanego menu na mobilkach
   const [filteredDrugs, setFilteredDrugs] = useState([]); // wyszukiwarka leków dopracowac w innych oknach!
   const [searchedItem, setSearchedItem] = useState("");
-  // let handleVisibility;// doczytac co z mediaqueries!!
-  // const mql = window.matchMedia("screen and (max-width:650px)");
-  // mql.addListener(function (mql) {
-  //   if (mql.matches) {
-  //     console.log("działa"); //cos trzeba zmienic!!!!!!!!!!!
-  //     handleVisibility = () => {
-  //       setVisibility((prev) => !prev);
-  //       setMenu((prev) => !prev);
-  //       console.log("test hamburgera");
-  //     };
-  //   } else {
-  //     setVisibility(false);
-  //     setMenu(false);
-  //   }
-  // });
   const handleVisibility = () => {
     //do mediqueries dla małego ekranu
     //klikanie zmienia widocznosc przekazujemy jako props do nava
@@ -51,27 +28,12 @@ const Layout = () => {
     );
     setSearchedItem(searchItem);
   }; //filtrowanie leków
-
-  console.log(filteredDrugs);
-
-  //basket
-  // const [basket, setBasket] = useState([]);
-  // const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [pay, setPay] = useState(0);
   const [inBasket, setInBasket] = useState(0);
-  // const [price, setPrice] = useState(0);
+
   const API = "http://localhost:8000/basket";
 
-  // const handleBasket = (event, item, price) => {
-  //   setBasket((prev) => {
-  //     return [...prev, item];
-  //   });
-  //   setPrice(price * quantity);
-  //   setPay((prev) => prev + price);
-  //   console.log(basket);
-  //   console.log(event.target);
-  // };
   useEffect(() => {
     fetch(`${API}`)
       .then((response) => response.json())
@@ -103,19 +65,13 @@ const Layout = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setQuantity((prev) => prev + 1);
+        setPay((prev) => prev + price);
       })
       .catch((error) => {
         console.log(error);
       });
-    setQuantity((prev) => prev + 1);
-    setPay((prev) => prev + price);
   };
-  console.log(pay);
-
-  // const spanQuantity = useRef(null);
-  // const currentButtonAdd = useRef(null);
-  // const currentButtonSubstract = useRef(null);
-
   const handleQuantityAdd = (price, item, ref, event) => {
     let counter = parseFloat(ref.current.innerText) + 1;
     const data = {
@@ -131,13 +87,13 @@ const Layout = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setPay((prev) => prev + price);
+        setQuantity((prev) => prev + 1);
       })
       .catch((error) => {
         console.log(error);
       });
     console.log(counter);
-    setPay((prev) => prev + price);
-    setQuantity((prev) => prev + 1);
   };
   const handleQuantitySubstract = (price, item, ref, event) => {
     let counter = parseFloat(ref.current.innerText) - 1;
@@ -155,23 +111,14 @@ const Layout = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setQuantity((prev) => prev - 1);
+        setPay((prev) => prev - price);
       })
       .catch((error) => {
         console.log(error);
       });
     console.log(quantity);
-    setQuantity((prev) => prev - 1);
-    setPay((prev) => prev - price);
   };
-  // useEffect(() => {
-
-  //   setPay((prev) => prev + price);
-  // }, [quantity]); //poprawić z buttonami
-
-  // const handleQuantity = (e) => {
-  //   e.preventDefault();
-  //   setQuantity(e.target.value);
-  // };
 
   const handleRemove = (item) => {
     fetch(`${API}/${item.id}`, {
@@ -179,11 +126,16 @@ const Layout = () => {
     })
       .then((response) => {
         console.log(response.ok);
+        setPay((prev) => prev - 15 * item.howMany);
+        setQuantity((prev) => prev - item.howMany);
       })
       .catch((error) => {
         console.log(error);
       });
-    setPay((prev) => prev - 15 * item.howMany);
+  };
+  const zeroQuantityBadge = () => {
+    setQuantity(0);
+    setPay(0);
   };
 
   const NotFound = () => {
@@ -213,12 +165,6 @@ const Layout = () => {
               />
             )}
           />
-          {/* <Route
-            path="/searchedItems"
-            render={(props) => (
-              <SearchedItems {...props} itemsToShow={filteredDrugs} />
-            )}
-          /> */}
           <Route
             exact
             path="/basket"
@@ -227,18 +173,16 @@ const Layout = () => {
                 {...props}
                 itemsToShow={filteredDrugs}
                 imageToShow={searchedItem}
-                // showBasket={basket}
                 onBuy={handleBasket}
                 pay={pay}
                 quantity={quantity}
-                // price={price}
                 changeQuantityAdd={handleQuantityAdd}
                 changeQuantitySubstract={handleQuantitySubstract}
                 remove={handleRemove}
+                zeroHandle={zeroQuantityBadge}
               />
             )}
           />
-          {/* <Route path="/otc" component={Otc} /> */}
           <Route
             exact
             path="/otc"
@@ -259,12 +203,9 @@ const Layout = () => {
                 itemsToShow={filteredDrugs}
                 imageToShow={searchedItem}
                 onBuy={handleBasket}
-
-                // imageToShow={searchedItem}
               />
             )}
           />
-          {/* <Route path="/drugs" component={Drugs} /> */}
           <Route
             exact
             path="/drugs"
@@ -277,7 +218,6 @@ const Layout = () => {
             )}
           />
           <Route path="/log" component={Log} />
-          <Route path="/onBuy" component={onBuy} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
@@ -286,3 +226,4 @@ const Layout = () => {
   );
 };
 export default Layout;
+//ok

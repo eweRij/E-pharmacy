@@ -1,92 +1,88 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
 import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  // const user = useContext(UserContext);
+  const [error, setError] = useState([]);
+  const [log, setLog] = useState({
+    email: "",
+    password: "",
+  });
 
-  const signInWithEmailAndPasswordHandler = (event, email, password) => {
-    event.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).catch((error) => {
-      setError("Error signing in with password and email!");
-      console.error("Error signing in with password and email", error);
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setLog((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
     });
   };
 
-  const onChangeHandler = (event) => {
-    const { name, value } = event.currentTarget;
-
-    if (name === "userEmail") {
-      setEmail(value);
-    } else if (name === "userPassword") {
-      setPassword(value);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(log.email, log.password) //logowanie z firebase
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((error) => {
+        setError(error);
+        // alert("Błędny login lub hasło!");
+      });
   };
 
   return (
-    <div className="">
-      <h1 className="">Zaloguj się</h1>
-      <div className="">
-        {error !== null && <div className="">{error}</div>}
-        <form className="">
-          <label htmlFor="userEmail" className="">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="my-1 p-1 w-full"
-            name="userEmail"
-            value={email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Hasło:
-          </label>
-          <input
-            type="password"
-            className="mt-1 mb-3 p-1 w-full"
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={(event) => onChangeHandler(event)}
-          />
-          <button
-            className=""
-            onClick={(event) => {
-              signInWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Zaloguj się
-          </button>
+    <div className="signIn__container">
+      <h1>Zaloguj się</h1>
+      <div className="loggin">
+        {error !== [] && <div>{error}</div>}
+        <form className="log-form" onSubmit={handleSubmit}>
+          <div className="email">
+            <label htmlFor="userEmail" className="log-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              className="log-input"
+              name="email"
+              value={log.email}
+              placeholder="np. coderslab@gmail.com"
+              id="userEmail"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="password">
+            <label htmlFor="userPassword" className="log-label">
+              Hasło:
+            </label>
+            <input
+              type="password"
+              className="log-input"
+              name="password"
+              value={log.password}
+              placeholder="Twoje hasło"
+              id="userPassword"
+              onChange={handleChange}
+            />
+          </div>
+          <input type="submit" value="Zaloguj się" className="log btn"></input>
         </form>
         <p className="">lub</p>
         <button
-          className=""
+          className="log btn"
           onClick={() => {
             signInWithGoogle();
           }}
         >
           Zaloguj się z Google
         </button>
-        <p className="">
-          Nie masz jeszcze konta?{" "}
-          <Link to="/log/signUp" className="">
-            Zarejestruj się tutaj
-          </Link>{" "}
-          <br />{" "}
-          <Link to="/log/passwordReset" className="">
-            Zapomniałeś hasła?
-          </Link>
-        </p>
       </div>
     </div>
   );
 };
 
 export default SignIn;
+//okej

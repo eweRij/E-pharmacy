@@ -1,15 +1,68 @@
-.badge {
-    border-radius: 50% 50%;
-      right: 3%;
-      position: absolute;
-      top: 20%;
-      font-size: 10px;
-      color: #fff;
-      font-weight: 400;
-      height: 20px;
-      line-height: 19px;
-      padding: 0 2px 0 1px;
-      min-width: 20px;
-      text-align: center;
-      background-color: #d9042b;
+  .bsk {
+    background: #d9042b 0% 0% no-repeat padding-box;
+    box-shadow: #00000029 0 3px 6px;
+    margin-bottom: 2rem;
   }
+.basket-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+  &__price {
+    justify-self: flex-end;
+    font-weight: 900;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    list-style: none;
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      margin-bottom: 2rem;
+      background-color: white;
+      border-radius: 15px;
+      width: 55vw;
+      color: rgb(3, 76, 140);
+      outline: none;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 5px 12px;
+      box-shadow: #00000029 0 3px 6px;
+    }
+  }
+
+}
+
+// .buy-btn {
+//   border: none;
+//   box-shadow: #00000029 0 3px 6px;
+//   background-color: #d9042b ;
+
+// }
+.item-btn {
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
+}
+.buy-btn {
+  box-shadow: #00000029 0 3px 6px;
+  background-color: #08A6E4;
+  color: white;
+  font-weight: 900;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  outline: none;
+  &:focus {
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+  
+}

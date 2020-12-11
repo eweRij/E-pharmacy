@@ -1,52 +1,43 @@
-import React, { useContext, useState } from "react";
-import { Link } from "@reach/router";
+import React, { useState } from "react";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [error, setError] = useState(null);
+  // const [email, setEmail] = useState("");
 
-  const createUserWithEmailAndPasswordHandler = async (
-    event,
-    email,
-    password
-  ) => {
-    event.preventDefault();
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      generateUserDocument(user, { displayName });
-    } catch (error) {
-      setError("Error Signing up with email and password");
-    }
+  const [log, setLog] = useState({
+    email: "",
+    password: "",
+    displayName: "",
+    // displayName: "",
+    // checkPassword: "",
+  });
+  // const [displayName, setDisplayName] = useState("");
+  const [error, setError] = useState([]);
 
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setLog((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
-  const onChangeHandler = (event) => {
-    const { name, value } = event.currentTarget;
-
-    if (name === "userEmail") {
-      setEmail(value);
-    } else if (name === "userPassword") {
-      setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(log.email, log.password)
+      .then(console.log("zarejestrowano"))
+      .catch((error) => console.log(error));
   };
 
   return (
-    <div className="">
-      <h1 className="">Zarejestruj się</h1>
-      <div className="">
-        {error !== null && <div className="">{error}</div>}
-        <form className="">
+    <div>
+      <h1>Zarejestruj się</h1>
+      <div className="signup">
+        <form className="log-form" onSubmit={handleSubmit}>
           <label htmlFor="displayName" className="">
             Twoje imię:
           </label>
@@ -54,45 +45,39 @@ const SignUp = () => {
             type="text"
             className=""
             name="displayName"
-            value={displayName}
+            value={log.displayName}
             placeholder="E.g: Faruq"
             id="displayName"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={handleChange}
           />
-          <label htmlFor="userEmail" className="block">
+          <label htmlFor="userEmail" className="log-label">
             Email:
           </label>
           <input
             type="email"
-            className=""
-            name="userEmail"
-            value={email}
-            placeholder="E.g: faruq123@gmail.com"
+            className="log-input"
+            name="email"
+            value={log.email}
+            placeholder="n.pk coderslab@gmail.com"
             id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={handleChange}
           />
-          <label htmlFor="userPassword" className="block">
+          <label htmlFor="userPassword" className="log-label">
             Hasło:
           </label>
           <input
             type="password"
-            className=""
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
+            className="log-input"
+            name="password"
+            value={log.password}
+            placeholder="Twoje hasło"
             id="userPassword"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={handleChange}
           />
-          <button
-            className=""
-            onClick={(event) => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Zarejestruj się
-          </button>
+          {/* <button className="log btn">Zarejestruj się</button> */}
+          <input className="log btn" type="submit" value="Załóż konto"></input>
         </form>
-        <p className="">lub</p>
+        <p>lub</p>
         <button
           onClick={() => {
             try {
@@ -101,16 +86,10 @@ const SignUp = () => {
               console.error("Error signing in with Google", error);
             }
           }}
-          className=""
+          className="log btn"
         >
           Zaloguj się z Google
         </button>
-        <p className="">
-          Masz już konto?{" "}
-          <Link to="/log/signIn" className="">
-            Zaloguj się tutaj
-          </Link>{" "}
-        </p>
       </div>
     </div>
   );
