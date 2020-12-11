@@ -1,6 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -8,7 +6,7 @@ const Footer = () => {
       <footer className="container">
         <section>
           <div className="pr">
-            <h2>Random stuff</h2>
+            <h2>O nas</h2>
             <p>
               Etiam feugiat condimentum Aliquam imperdiet suscipit odio Sed
               porttitor cras in erat nec Felis varius pellentesque potenti
@@ -16,7 +14,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="footerVisibility pr">
-            <h2>Random stuff</h2>
+            <h2>Aktualności</h2>
             <p>
               Etiam feugiat condimentum Aliquam imperdiet suscipit odio Sed
               porttitor cras in erat nec Felis varius pellentesque potenti
@@ -26,7 +24,7 @@ const Footer = () => {
         </section>
         <section>
           <div className="pr">
-            <h2>Random stuff</h2>
+            <h2>Regulamin</h2>
             <p>
               Etiam feugiat condimentum Aliquam imperdiet suscipit odio Sed
               porttitor cras in erat nec Felis varius pellentesque potenti
@@ -34,13 +32,18 @@ const Footer = () => {
             </p>
           </div>
           <div className="footerVisibility">
-            <h2>Contact Us</h2>
-            <i className="fab fa-twitter"></i>
-            <i className="fab fa-facebook"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-dribble"></i>
-            <i className="fab fa-pinterest"></i>
-            <p>1234 Fictional Road Nashville, TN 00000 (800) 555-0000</p>
+            <h2 style={{ color: "#012c52" }}>Kontakt</h2>
+            <div className="footer__media">
+              <a href="https://www.facebook.com/">
+                {" "}
+                <i className="fab fa-facebook"></i>
+              </a>
+
+              <a href="https://www.instagram.com/">
+                <i className="fab fa-instagram"></i>
+              </a>
+            </div>
+            <p>ul. Mikołajska 4, 31-027, Kraków</p>
           </div>
         </section>
       </footer>

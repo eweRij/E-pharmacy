@@ -1,0 +1,23 @@
+.prescription__pesel {
+    label {
+        color : #d9042b;
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+    input {
+
+    }
+}
+.prescription__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:center;
+    label {
+        color : #d9042b;
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+}

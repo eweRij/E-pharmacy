@@ -1,6 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 
 const Slider = () => {
@@ -48,14 +46,14 @@ const Slider = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              style={{ maxWidth: "650px", maxHeight: "350px" }}
+              style={{ maxWidth: "700px", maxHeight: "350px" }}
               className="d-block w-100"
               src="https://images.pexels.com/photos/593451/pexels-photo-593451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
               alt="bottle with tablets"
             />
 
             <Carousel.Caption style={{ color: " #d9042b" }}>
-              <h2>Zrealizuj u nas swoją e-receptę!</h2>
+              <h1>Zrealizuj u nas swoją e-receptę!</h1>
               <h2>Łatwy i szybki sposób, bez czekania na zamówienie.</h2>
             </Carousel.Caption>
           </Carousel.Item>
@@ -66,3 +64,4 @@ const Slider = () => {
 };
 
 export default Slider;
+//ok

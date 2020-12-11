@@ -1,0 +1,11 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__info {
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+    }
+}

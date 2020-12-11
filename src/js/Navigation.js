@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
-import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 
-const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
+const Navigation = ({ onClick, trigger, showList, howMany }) => {
   // działa przenoszenie
   const user = useContext(UserContext);
   const [drugs, setDrugs] = useState([]);
   const [searchItem, setSearchItem] = useState("");
-  // const [filteredDrugs, setFilteredDrugs] = useState("");
   const handleSearchItem = (e) => {
     e.preventDefault();
     setSearchItem(e.target.value);
   };
   const API = `http://localhost:8080/api/drugs`;
+
   const handleSearch = (e) => {
     e.preventDefault();
     fetch(`${API}`)
@@ -26,11 +26,11 @@ const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
     setDrugs([]);
     console.log("czyszcze");
   }; //czysci historie wyszukiwania łopatologicznie, da się lepiej??
-  console.log(searchItem);
+
   useEffect(() => {
     showList(drugs, searchItem);
   }, [drugs]);
-  // console.log(filteredDrugs);
+
   return (
     <>
       <header className="container">
@@ -52,7 +52,11 @@ const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
               ></input>
               <input id="btn-search" type="submit" value="Szukaj"></input>
             </form>
-            <span>{user && "Witaj Ewelina!"}</span>
+            <span className="user-name">
+              <h3 style={{ minWidth: "20rem" }}>
+                {user && `Witaj ${user.displayName}!`}
+              </h3>
+            </span>
             <Link className="basket" to="./basket">
               <i
                 onClick={handleClearHistory}
@@ -64,40 +68,54 @@ const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
           </div>
           <nav className={trigger ? "mobile-section opened" : "mobile-section"}>
             <button onClick={onClick} id="menu-trigger">
-              <i class="fas fa-bars"></i>
+              <i className="fas fa-bars"></i>
             </button>
             <ul className="menu">
-              <li>
-                <Link onClick={handleClearHistory} className="links" to="/">
+              <li onClick={handleClearHistory} className="menu__element">
+                <Link className="links" to="/">
                   Strona główna
                 </Link>
               </li>
-              <li>
-                <Link onClick={handleClearHistory} className="links" to="/otc">
+              <li className="menu__element">
+                <Link
+                  onClick={handleClearHistory}
+                  disabled
+                  className="links"
+                  to="/otc"
+                >
                   Bez recepty
                 </Link>
               </li>
-              <li>
+              <li className="menu__element">
                 <Link
                   onClick={handleClearHistory}
+                  disabled
                   className="links"
                   to="/drugs"
                 >
                   Na receptę
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={handleClearHistory}
-                  className="links"
-                  to="/prescriptions"
-                >
+              <li onClick={handleClearHistory} className="menu__element">
+                <Link className="links" to="/prescriptions">
                   Zrealizuj receptę!
                 </Link>
               </li>
-              <li>
-                <Link className="links" to="/log">
-                  Zaloguj się
+              <li
+                style={{
+                  minWidth: "26vw",
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingLeft: "0px",
+                }}
+                className="menu__element"
+              >
+                <Link
+                  style={{ textAlign: "center" }}
+                  className="links"
+                  to="/log"
+                >
+                  {user ? "Twój profil" : "Zaloguj się"}
                 </Link>
               </li>
             </ul>
@@ -108,3 +126,4 @@ const Navigation = ({ onClick, trigger, showList, inBasket, howMany }) => {
   );
 };
 export default Navigation;
+//ok
