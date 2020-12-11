@@ -4,9 +4,6 @@ const OnBuy = ({ items, zeroHandle }) => {
   const API = "http://localhost:8000/basket";
 
   useEffect(() => {
-    // fetch(`${API}/${items.map((el) => el.id).join(",")}`, {
-    //   method: "DELETE",
-    // })
     Promise.all(
       items.map((el) => {
         return fetch(`${API}/${el.id}`, { method: "DELETE" });
@@ -24,7 +21,7 @@ const OnBuy = ({ items, zeroHandle }) => {
   return (
     <>
       <div className="container wraper">
-        <h1>
+        <h1 style={{ marginTop: "3rem" }}>
           Brawo ! udało Ci się dokonać zakupu w naszym sklepie. Oczekuj na
           wiadomość od nas, kiedy towar będzie dostępny do odbioru w wybranej
           placówce.

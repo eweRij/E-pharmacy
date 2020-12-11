@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
 import Log from "./Log";
 import { UserContext } from "../providers/UserProvider";
@@ -33,7 +32,7 @@ const Prescriptions = ({ itemsToShow, onBuy, imageToShow }) => {
       })
       .catch((err) =>
         alert(
-          "Coś poszło nie tak! Spróbuj jeszcze raz lub skontakruj się z nami",
+          "Coś poszło nie tak! Spróbuj jeszcze raz lub skontaktuj się z nami",
           err
         )
       );

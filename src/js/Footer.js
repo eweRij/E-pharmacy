@@ -43,7 +43,7 @@ const Footer = () => {
                 <i className="fab fa-instagram"></i>
               </a>
             </div>
-            <p>1234 Fictional Road Nashville, TN 00000 (800) 555-0000</p>
+            <p>ul. Mikołajska 4, 31-027, Kraków</p>
           </div>
         </section>
       </footer>

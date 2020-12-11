@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
 
 const SignUp = () => {
@@ -105,12 +104,6 @@ const SignUp = () => {
         >
           Zaloguj się z Google
         </button>
-        {/* <p className="">
-          Masz już konto?{" "}
-          <Link to="/log/signIn" className="">
-            Zaloguj się tutaj
-          </Link>{" "}
-        </p> */}
       </div>
     </div>
   );

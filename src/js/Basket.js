@@ -1,7 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-// import { useState } from "react";
-// import ReactDOM from "react-dom";
-// import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 import SearchedItems from "./SearchedItems";
 import ItemToBuy from "./ItemToBuy";
 import OnBuy from "./OnBuy";
@@ -12,8 +9,6 @@ const Basket = ({
   itemsToShow,
   imageToShow,
   onBuy,
-  // showBasket,
-  // price,
   pay,
   quantity,
   remove,
@@ -22,11 +17,11 @@ const Basket = ({
   zeroHandle,
 }) => {
   const API = "http://localhost:8000/basket";
+
   const [basketItems, setBasketItems] = useState(false);
-  // const [pay, setPay] = useState(0);
   const user = useContext(UserContext);
+
   let price = 15;
-  console.log(API);
 
   useEffect(() => {
     fetch(`${API}`)
@@ -37,24 +32,12 @@ const Basket = ({
       .catch((err) => console.log(err));
   }, [pay]);
 
-  console.log(basketItems);
-  console.log(pay);
-  // useEffect(() => setPay((prev) => prev + price), [basketItems]);
-
-  //ustawianie liczby itemów
-  // const [quantity, setQuantity] = useState(1);
-
-  // const handleQuantity = (e) => {
-  //   e.preventDefault();
-  //   setQuantity(e.target.value);
-  // };
   const [visibility, setVisibility] = useState(false);
+
   const handleVisibility = () => {
     setVisibility((prev) => !prev);
   };
   if (itemsToShow.length > 0) {
-    //jak wyczyscic ustawienia po ponownym wyrenderowaniu?
-
     return (
       <SearchedItems
         onList={itemsToShow}
@@ -79,7 +62,6 @@ const Basket = ({
                       itemToBuy={item}
                       index={index}
                       price={price}
-                      // pay={pay}
                       quantity={quantity}
                       changeQuantityAdd={changeQuantityAdd}
                       changeQuantitySubstract={changeQuantitySubstract}

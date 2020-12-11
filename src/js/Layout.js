@@ -8,11 +8,6 @@ import Otc from "./Otc";
 import Prescriptions from "./Prescriptions";
 import Drugs from "./Drugs";
 import Log from "./Log";
-import onBuy from "./OnBuy";
-import "../scss/layout.scss";
-import ProfilePage from "../Login/ProfilePage";
-import PasswordReset from "../Login/PasswordReset";
-import SignUp from "../Login/SignUp";
 
 const Layout = () => {
   const [visibility, setVisibility] = useState(false); //widocznosc hamburgera
@@ -70,12 +65,12 @@ const Layout = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setQuantity((prev) => prev + 1);
+        setPay((prev) => prev + price);
       })
       .catch((error) => {
         console.log(error);
       });
-    setQuantity((prev) => prev + 1);
-    setPay((prev) => prev + price);
   };
   const handleQuantityAdd = (price, item, ref, event) => {
     let counter = parseFloat(ref.current.innerText) + 1;
@@ -92,13 +87,13 @@ const Layout = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setPay((prev) => prev + price);
+        setQuantity((prev) => prev + 1);
       })
       .catch((error) => {
         console.log(error);
       });
     console.log(counter);
-    setPay((prev) => prev + price);
-    setQuantity((prev) => prev + 1);
   };
   const handleQuantitySubstract = (price, item, ref, event) => {
     let counter = parseFloat(ref.current.innerText) - 1;
@@ -116,13 +111,13 @@ const Layout = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setQuantity((prev) => prev - 1);
+        setPay((prev) => prev - price);
       })
       .catch((error) => {
         console.log(error);
       });
     console.log(quantity);
-    setQuantity((prev) => prev - 1);
-    setPay((prev) => prev - price);
   };
 
   const handleRemove = (item) => {
@@ -131,12 +126,12 @@ const Layout = () => {
     })
       .then((response) => {
         console.log(response.ok);
+        setPay((prev) => prev - 15 * item.howMany);
+        setQuantity((prev) => prev - item.howMany);
       })
       .catch((error) => {
         console.log(error);
       });
-    setPay((prev) => prev - 15 * item.howMany);
-    setQuantity((prev) => prev - item.howMany);
   };
   const zeroQuantityBadge = () => {
     setQuantity(0);
@@ -223,10 +218,6 @@ const Layout = () => {
             )}
           />
           <Route path="/log" component={Log} />
-          {/* <Route path="/log/profilePage" component={ProfilePage} />
-          <Route path="/log/signUp" component={SignUp} />
-          <Route path="/log/passwordReset" component={PasswordReset} />
-          <Route path="/log/onBuy" component={onBuy} /> */}
           <Route component={NotFound} />
         </Switch>
         <Footer />

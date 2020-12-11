@@ -78,7 +78,7 @@ const SearchedItems = ({ onList, imageToShow, onBuy }) => {
         </div>
       </>
     );
-  } else if (onList.length === 0) {
+  } else if (!onList) {
     return (
       <div className="container">
         <h2>Przykro nam, ale nie znaleźliśmy tego,czego szukasz.</h2>
