@@ -3,34 +3,43 @@ import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  // const user = useContext(UserContext);
+  const [error, setError] = useState([]);
+  const [log, setLog] = useState({
+    email: "",
+    password: "",
+  });
 
-  const signInWithEmailAndPasswordHandler = (event, email, password) => {
-    event.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).catch((error) => {
-      setError("Error signing in with password and email!");
-      console.error("Error signing in with password and email", error);
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setLog((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
     });
   };
 
-  const onChangeHandler = (event) => {
-    const { name, value } = event.currentTarget;
-
-    if (name === "userEmail") {
-      setEmail(value);
-    } else if (name === "userPassword") {
-      setPassword(value);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(log.email, log.password) //logowanie z firebase
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((error) => {
+        setError(error);
+        // alert("Błędny login lub hasło!");
+      });
   };
 
   return (
     <div className="signIn__container">
       <h1>Zaloguj się</h1>
       <div className="loggin">
-        {error !== null && <div>{error}</div>}
-        <form className="log-form">
+        {error !== [] && <div>{error}</div>}
+        <form className="log-form" onSubmit={handleSubmit}>
           <div className="email">
             <label htmlFor="userEmail" className="log-label">
               Email:
@@ -38,11 +47,11 @@ const SignIn = () => {
             <input
               type="email"
               className="log-input"
-              name="userEmail"
-              value={email}
+              name="email"
+              value={log.email}
               placeholder="np. coderslab@gmail.com"
               id="userEmail"
-              onChange={(event) => onChangeHandler(event)}
+              onChange={handleChange}
             />
           </div>
           <div className="password">
@@ -52,21 +61,14 @@ const SignIn = () => {
             <input
               type="password"
               className="log-input"
-              name="userPassword"
-              value={password}
+              name="password"
+              value={log.password}
               placeholder="Twoje hasło"
               id="userPassword"
-              onChange={(event) => onChangeHandler(event)}
+              onChange={handleChange}
             />
           </div>
-          <button
-            className="log btn"
-            onClick={(event) => {
-              signInWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Zaloguj się
-          </button>
+          <input type="submit" value="Zaloguj się" className="log btn"></input>
         </form>
         <p className="">lub</p>
         <button

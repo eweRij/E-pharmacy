@@ -2,61 +2,53 @@ import React, { useState } from "react";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [error, setError] = useState(null);
+  // const [email, setEmail] = useState("");
 
-  const createUserWithEmailAndPasswordHandler = async (
-    event,
-    email,
-    password
-  ) => {
-    event.preventDefault();
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      generateUserDocument(user, { displayName });
-    } catch (error) {
-      setError("Coś poszło nie tak! Spróbuj jeszcze raz...");
-    }
+  const [log, setLog] = useState({
+    email: "",
+    password: "",
+    displayName: "",
+    // displayName: "",
+    // checkPassword: "",
+  });
+  // const [displayName, setDisplayName] = useState("");
+  const [error, setError] = useState([]);
 
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setLog((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
-  const onChangeHandler = (event) => {
-    const { name, value } = event.currentTarget;
-
-    if (name === "userEmail") {
-      setEmail(value);
-    } else if (name === "userPassword") {
-      setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(log.email, log.password)
+      .then(console.log("zarejestrowano"))
+      .catch((error) => console.log(error));
   };
 
   return (
     <div>
       <h1>Zarejestruj się</h1>
       <div className="signup">
-        {error !== null && <div className="">{error}</div>}
-        <form className="log-form">
-          <label htmlFor="displayName" className="log-label">
+        <form className="log-form" onSubmit={handleSubmit}>
+          <label htmlFor="displayName" className="">
             Twoje imię:
           </label>
           <input
             type="text"
-            className="log-input"
+            className=""
             name="displayName"
-            value={displayName}
-            placeholder="np. Dżesika"
+            value={log.displayName}
+            placeholder="E.g: Faruq"
             id="displayName"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={handleChange}
           />
           <label htmlFor="userEmail" className="log-label">
             Email:
@@ -64,11 +56,11 @@ const SignUp = () => {
           <input
             type="email"
             className="log-input"
-            name="userEmail"
-            value={email}
+            name="email"
+            value={log.email}
             placeholder="n.pk coderslab@gmail.com"
             id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={handleChange}
           />
           <label htmlFor="userPassword" className="log-label">
             Hasło:
@@ -76,20 +68,14 @@ const SignUp = () => {
           <input
             type="password"
             className="log-input"
-            name="userPassword"
-            value={password}
+            name="password"
+            value={log.password}
             placeholder="Twoje hasło"
             id="userPassword"
-            onChange={(event) => onChangeHandler(event)}
+            onChange={handleChange}
           />
-          <button
-            className="log btn"
-            onClick={(event) => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Zarejestruj się
-          </button>
+          {/* <button className="log btn">Zarejestruj się</button> */}
+          <input className="log btn" type="submit" value="Załóż konto"></input>
         </form>
         <p>lub</p>
         <button

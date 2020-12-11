@@ -4,6 +4,17 @@ import { auth } from "../firebase";
 const ProfilePage = () => {
   const user = useContext(UserContext);
 
+  const handleLogout = () => {
+    auth
+      .signOut()
+      .then(function () {
+        console.log("wylogowano");
+      })
+      .catch(function (error) {
+        console.log("błąd wylogowania");
+      });
+  };
+
   return (
     <div className="container wraper profile">
       <div className="profile__info">
@@ -23,12 +34,7 @@ const ProfilePage = () => {
           <h3>{user.email}</h3>
         </div>
       </div>
-      <button
-        className="btn log"
-        onClick={() => {
-          auth.signOut();
-        }}
-      >
+      <button className="btn log" onClick={handleLogout}>
         Wyloguj się
       </button>
     </div>

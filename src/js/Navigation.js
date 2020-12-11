@@ -68,7 +68,7 @@ const Navigation = ({ onClick, trigger, showList, howMany }) => {
           </div>
           <nav className={trigger ? "mobile-section opened" : "mobile-section"}>
             <button onClick={onClick} id="menu-trigger">
-              <i class="fas fa-bars"></i>
+              <i className="fas fa-bars"></i>
             </button>
             <ul className="menu">
               <li onClick={handleClearHistory} className="menu__element">
