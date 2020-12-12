@@ -2,6 +2,7 @@
   "name": "final_project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ewerij.github.io/E-pharmacy",
   "dependencies": {
     "@reach/router": "^1.3.4",
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,8 +16,8 @@
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "homepage": "https://ewerij.github.io/E-pharmacy"
+    "react-scripts": "3.4.3"
+    
   },
   "scripts": {
     "start": "react-scripts start",
